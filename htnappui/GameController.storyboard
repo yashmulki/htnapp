@@ -23,9 +23,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mur-iE-N7Z" customClass="PreviewView" customModule="htnappui" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Odx-z4-Smb" customClass="RoundedCornerView" customModule="htnappui" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Odx-z4-Smb" customClass="RoundedCornerView" customModule="htnappui" customModuleProvider="target">
                                         <rect key="frame" x="8" y="712" width="359" height="76"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tXB-rF-em5" customClass="RoundedCornerView" customModule="htnappui" customModuleProvider="target">
                                                 <rect key="frame" x="8" y="5" width="66" height="66"/>
@@ -110,6 +109,9 @@
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Odx-z4-Smb" secondAttribute="bottom" constant="24" id="m8b-zX-kOc"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>

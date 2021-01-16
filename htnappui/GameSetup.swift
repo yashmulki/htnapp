@@ -8,7 +8,7 @@
 import SwiftUI
 import Introspect
 
-let api = "https://dashboard.heroku.com/apps/exeroom"
+let api = "https://exeroom-623bzrlseq-ue.a.run.app"
 
 struct GameSetup: View {
     var routine: Routine
@@ -37,16 +37,34 @@ struct GameSetup: View {
                         Spacer()
                     }.padding(.bottom, 20).padding(.top, 120).padding(.leading, 20)
 
-                    
+                    let binding = Binding<String>(get: {
+                        roomCode
+                    }, set: {
+                        roomCode = $0
+
+                        vonageInfo.sessionId = ""
+                        vonageInfo.token = ""
+                    })
 
                     // This is going to look so shitty lol.
-                    TextField("Room Code", text: $roomCode)
+                    TextField("Room Code", text: binding)
+                        .multilineTextAlignment(.center)
 
                     Button(action: {
                         if roomCode.isEmpty {
                             let url = URL(string: "\(api)/rooms/create")!
 
-                            let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+                            let requestParams: [String:Any] = [
+                                "user_id": UIDevice.current.name
+                            ]
+                            guard let requestData =
+                                try? JSONSerialization.data(withJSONObject: requestParams) else { return }
+
+                            var request = URLRequest(url: url)
+                            request.httpMethod = "GET"
+//                            request.httpBody = requestData
+
+                            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
                                 guard let data = data else { return }
 
                                 guard let json = try? JSONSerialization.jsonObject(
@@ -74,9 +92,13 @@ struct GameSetup: View {
                                     guard let sessionId = json["session_id"] as? String else { return }
                                     guard let token = json["token"] as? String else { return }
 
+                                    roomCode = roomId
+
                                     // I feel paralyzed to move this crazy action call out of the function.
                                     vonageInfo.sessionId = sessionId
                                     vonageInfo.token = token
+                                    
+                                    print(sessionId)
                                 }
                                 
                                 task.resume()
@@ -248,7 +270,7 @@ struct GameSetup: View {
                         .foregroundColor(.white)
                         .overlay(
                             RoundedRectangle(cornerRadius: 20)
-                                .stroke(Color.white, lineWidth: 5)
+                                .stroke(Color.blue, lineWidth: 5)
                         )
                   
                 }

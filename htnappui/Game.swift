@@ -184,6 +184,8 @@ class GameViewController : UIViewController {
     }
 
     func bodyPoseHandler(request: VNRequest, error: Error?) {
+        return
+
         guard let observations = request.results as? [VNRecognizedPointsObservation] else {
             return
         }
@@ -223,8 +225,6 @@ class GameViewController : UIViewController {
                     Int(preview?.frame.width ?? 100), Int(preview?.frame.height ?? 100))
             }
 
-            
-            
             DispatchQueue.main.async {
                 for dot in self.dots {
                     dot.removeFromSuperlayer()
@@ -237,8 +237,8 @@ class GameViewController : UIViewController {
                     self.dots.append(node)
                     self.preview.layer.addSublayer(node)
                     
-                    if let rw = recognizedPoints[.bodyLandmarkKeyRightWrist], let re = recognizedPoints[.bodyLandmarkKeyRightElbow] {
-                        
+                    if let rw = recognizedPoints[.bodyLandmarkKeyRightWrist], rw.confidence > 0, let re = recognizedPoints[.bodyLandmarkKeyRightElbow], rw.confidence > 0 {
+
                         let rightWrist = VNImagePointForNormalizedPoint(rw.location,
                                                                         Int(self.preview?.frame.width ?? 100), Int(self.preview?.frame.height ?? 100))
                         let rightElbow = VNImagePointForNormalizedPoint(re.location,
@@ -246,7 +246,7 @@ class GameViewController : UIViewController {
                         self.drawLine(onLayer: self.preview.layer, fromPoint: rightWrist, toPoint: rightElbow)
                     }
                     
-                    if let rs = recognizedPoints[.bodyLandmarkKeyRightShoulder], let re = recognizedPoints[.bodyLandmarkKeyRightElbow] {
+                    if let rs = recognizedPoints[.bodyLandmarkKeyRightShoulder], rs.confidence > 0, let re = recognizedPoints[.bodyLandmarkKeyRightElbow], re.confidence > 0 {
                         
                         let rightShoulder = VNImagePointForNormalizedPoint(rs.location,
                                                                         Int(self.preview?.frame.width ?? 100), Int(self.preview?.frame.height ?? 100))
@@ -255,7 +255,7 @@ class GameViewController : UIViewController {
                         self.drawLine(onLayer: self.preview.layer, fromPoint: rightShoulder, toPoint: rightElbow)
                     }
                     
-                    if let rs = recognizedPoints[.bodyLandmarkKeyRightShoulder], let ls = recognizedPoints[.bodyLandmarkKeyLeftShoulder] {
+                    if let rs = recognizedPoints[.bodyLandmarkKeyRightShoulder], rs.confidence > 0, let ls = recognizedPoints[.bodyLandmarkKeyLeftShoulder], ls.confidence > 0 {
                         
                         let rightShoulder = VNImagePointForNormalizedPoint(rs.location,
                                                                         Int(self.preview?.frame.width ?? 100), Int(self.preview?.frame.height ?? 100))
@@ -264,7 +264,7 @@ class GameViewController : UIViewController {
                         self.drawLine(onLayer: self.preview.layer, fromPoint: rightShoulder, toPoint: leftShoulder)
                     }
                     
-                    if let lw = recognizedPoints[.bodyLandmarkKeyLeftWrist], let le = recognizedPoints[.bodyLandmarkKeyLeftElbow] {
+                    if let lw = recognizedPoints[.bodyLandmarkKeyLeftWrist], lw.confidence > 0, let le = recognizedPoints[.bodyLandmarkKeyLeftElbow], le.confidence > 0 {
                         
                         let leftWrist = VNImagePointForNormalizedPoint(lw.location,
                                                                         Int(self.preview?.frame.width ?? 100), Int(self.preview?.frame.height ?? 100))
@@ -273,7 +273,7 @@ class GameViewController : UIViewController {
                         self.drawLine(onLayer: self.preview.layer, fromPoint: leftWrist, toPoint: leftElbow)
                     }
                     
-                    if let ls = recognizedPoints[.bodyLandmarkKeyLeftShoulder], let le = recognizedPoints[.bodyLandmarkKeyLeftElbow] {
+                    if let ls = recognizedPoints[.bodyLandmarkKeyLeftShoulder], ls.confidence > 0, let le = recognizedPoints[.bodyLandmarkKeyLeftElbow], le.confidence > 0 {
                         
                         let rightShoulder = VNImagePointForNormalizedPoint(ls.location,
                                                                         Int(self.preview?.frame.width ?? 100), Int(self.preview?.frame.height ?? 100))
@@ -281,86 +281,7 @@ class GameViewController : UIViewController {
                                                                         Int(self.preview?.frame.width ?? 100), Int(self.preview?.frame.height ?? 100))
                         self.drawLine(onLayer: self.preview.layer, fromPoint: rightShoulder, toPoint: rightElbow)
                     }
-                    
-//                    if let ls = recognizedPoints[.bodyLandmarkKeyLeftShoulder], let rs = recognizedPoints[.bodyLandmarkKeyRightShoulder], let root = recognizedPoints[.bodyLandmarkKeyRoot] {
-//
-//                        let leftShoulder = VNImagePointForNormalizedPoint(ls.location,
-//                                                                        Int(self.preview?.frame.width ?? 100), Int(self.preview?.frame.height ?? 100))
-//                        let rightShoulder = VNImagePointForNormalizedPoint(rs.location,
-//                                                                        Int(self.preview?.frame.width ?? 100), Int(self.preview?.frame.height ?? 100))
-//                        let rootNode = VNImagePointForNormalizedPoint(root.location,
-//                                                                      Int(self.preview?.frame.width ?? 100), Int(self.preview?.frame.height ?? 100))
-//
-//                        self.drawLine(onLayer: self.preview.layer, fromPoint: rightShoulder, toPoint: rootNode)
-//                        self.drawLine(onLayer: self.preview.layer, fromPoint: leftShoulder, toPoint: rootNode)
-//                    }
-//
-//
-//                    if let ls = recognizedPoints[.bodyLandmarkKeyLeftHip], let rs = recognizedPoints[.bodyLandmarkKeyRightHip], let root = recognizedPoints[.bodyLandmarkKeyRoot] {
-//
-//                        let leftShoulder = VNImagePointForNormalizedPoint(ls.location,
-//                                                                        Int(self.preview?.frame.width ?? 100), Int(self.preview?.frame.height ?? 100))
-//                        let rightShoulder = VNImagePointForNormalizedPoint(rs.location,
-//                                                                        Int(self.preview?.frame.width ?? 100), Int(self.preview?.frame.height ?? 100))
-//                        let rootNode = VNImagePointForNormalizedPoint(root.location,
-//                                                                      Int(self.preview?.frame.width ?? 100), Int(self.preview?.frame.height ?? 100))
-//
-//                        self.drawLine(onLayer: self.preview.layer, fromPoint: rightShoulder, toPoint: rootNode)
-//                        self.drawLine(onLayer: self.preview.layer, fromPoint: leftShoulder, toPoint: rootNode)
-//                    }
-//
-//
-//                    if let lh = recognizedPoints[.bodyLandmarkKeyLeftHip], let lk = recognizedPoints[.bodyLandmarkKeyLeftKnee] {
-//
-//                        let leftHhip = VNImagePointForNormalizedPoint(lh.location,
-//                                                                        Int(self.preview?.frame.width ?? 100), Int(self.preview?.frame.height ?? 100))
-//                        let leftKnee = VNImagePointForNormalizedPoint(lk.location,
-//                                                                        Int(self.preview?.frame.width ?? 100), Int(self.preview?.frame.height ?? 100))
-//
-//                        self.drawLine(onLayer: self.preview.layer, fromPoint: leftHhip, toPoint: leftKnee)
-//                    }
-//
-//                    if let lh = recognizedPoints[.bodyLandmarkKeyRightHip], let lk = recognizedPoints[.bodyLandmarkKeyRightKnee] {
-//
-//                        let leftHhip = VNImagePointForNormalizedPoint(lh.location,
-//                                                                        Int(self.preview?.frame.width ?? 100), Int(self.preview?.frame.height ?? 100))
-//                        let leftKnee = VNImagePointForNormalizedPoint(lk.location,
-//                                                                        Int(self.preview?.frame.width ?? 100), Int(self.preview?.frame.height ?? 100))
-//
-//                        self.drawLine(onLayer: self.preview.layer, fromPoint: leftHhip, toPoint: leftKnee)
-//                    }
-//
-//                    if let lh = recognizedPoints[.bodyLandmarkKeyLeftKnee], let lk = recognizedPoints[.bodyLandmarkKeyLeftAnkle] {
-//
-//                        let leftHhip = VNImagePointForNormalizedPoint(lh.location,
-//                                                                        Int(self.preview?.frame.width ?? 100), Int(self.preview?.frame.height ?? 100))
-//                        let leftKnee = VNImagePointForNormalizedPoint(lk.location,
-//                                                                        Int(self.preview?.frame.width ?? 100), Int(self.preview?.frame.height ?? 100))
-//
-//                        self.drawLine(onLayer: self.preview.layer, fromPoint: leftHhip, toPoint: leftKnee)
-//                    }
-//
-//                    if let lh = recognizedPoints[.bodyLandmarkKeyRightKnee], let lk = recognizedPoints[.bodyLandmarkKeyRightAnkle] {
-//
-//                        let leftHhip = VNImagePointForNormalizedPoint(lh.location,
-//                                                                        Int(self.preview?.frame.width ?? 100), Int(self.preview?.frame.height ?? 100))
-//                        let leftKnee = VNImagePointForNormalizedPoint(lk.location,
-//                                                                        Int(self.preview?.frame.width ?? 100), Int(self.preview?.frame.height ?? 100))
-//
-//                        self.drawLine(onLayer: self.preview.layer, fromPoint: leftHhip, toPoint: leftKnee)
-//                    }
-//
-                    
-                    
-//                    let newView = UIView(frame: CGRect(x: point.x, y: point.y, width: 20, height: 20))
-//                    newView.backgroundColor = .white
-//                    self.dots.append(newView)
-//                    self.preview.insertSubview(newView, at: 1)
                 }
-                
-                
-                
-                
             }
 
             print(imagePoints)
@@ -472,6 +393,8 @@ extension GameViewController : OTSessionDelegate {
             print(error!)
             return
         }
+
+//        captureSession.startRunning()
 
 //        guard let publisherView = publisher.view else {
 //            return
