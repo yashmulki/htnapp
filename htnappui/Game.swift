@@ -62,13 +62,6 @@ class GameViewController : UIViewController {
     
     var customInput: ExampleVideoCapture?
     var videoInput: AVCaptureDeviceInput?
-    
-    // Also should keep polling the backend probably to check for other person's score (once every second?)
-    // Also send our score each time
-    func pollServer() {
-        
-    }
-    
 
     // tracking exercise
     
@@ -116,7 +109,6 @@ class GameViewController : UIViewController {
     // Swift gods please forgive me.
     var vonageInfo: VonageInfo?
 
-    
     func connectToSession(sessionId: String, token: String) {
         session = OTSession(apiKey: apiKey, sessionId: sessionId, delegate: self)
         
@@ -145,30 +137,34 @@ class GameViewController : UIViewController {
         
         videoOutput.alwaysDiscardsLateVideoFrames = true
         videoOutput.videoSettings = [
-                    kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange)
-                ]
+            kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange)
+        ]
         
         guard captureSession.canAddOutput(videoOutput) else { return }
 
         dispatchQueue = DispatchQueue(label: "camera")
         videoOutput.setSampleBufferDelegate(self, queue: dispatchQueue)
 
-//        captureSession.sessionPreset = .medium
+        captureSession.sessionPreset = .hd1280x720
         captureSession.addOutput(videoOutput)
         captureSession.usesApplicationAudioSession = false
 
-        captureSession.connections.first!.videoOrientation = .portraitUpsideDown
+//        captureSession.connections.first!.videoOrientation = .portraitUpsideDown
         captureSession.commitConfiguration()
-//        captureSession.startRunning()
+
+        if vonageInfo == nil {
+            captureSession.startRunning()
+        }
+
         preview?.videoPreviewLayer.session = captureSession
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (Timer) in
-            self.pollServer() // Polls every second, can change as desired
-        }
+//        let timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (Timer) in
+//            self.pollServer() // Polls every second, can change as desired
+//        }
 
         switch AVCaptureDevice.authorizationStatus(for: .video) {
         case .authorized:
@@ -190,13 +186,9 @@ class GameViewController : UIViewController {
 
         guard let vonageInfo = vonageInfo else { return }
         connectToSession(sessionId: vonageInfo.sessionId, token: vonageInfo.token)
-        
-        
     }
 
     func bodyPoseHandler(request: VNRequest, error: Error?) {
-        
-
         guard let observations = request.results as? [VNRecognizedPointsObservation] else {
             return
         }
@@ -313,10 +305,7 @@ class GameViewController : UIViewController {
         layer.addSublayer(line)
         self.dots.append(line)
     }
-  
-    
-        
-    
+
     // We store these and make it follow hands -> TODO
     func makeHandParticles() {
         let particleEmitter = CAEmitterLayer()
@@ -412,20 +401,6 @@ extension GameViewController : OTSessionDelegate {
         }
         
         captureSession.startRunning()
-
-//        guard let publisherView = publisher.view else {
-//            return
-//        }
-//
-//        let screenBounds = UIScreen.main.bounds
-//        publisherView.frame = CGRect(
-//            x: screenBounds.width - 150 - 20,
-//            y: screenBounds.height - 150 - 20,
-//            width: 150,
-//            height: 150
-//        )
-//
-//        view.addSubview(publisherView)
     }
 
     func sessionDidDisconnect(_ session: OTSession) {
