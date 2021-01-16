@@ -117,7 +117,7 @@ class GameViewController : UIViewController {
     
     func connectToSession(sessionId: String, token: String) {
         session = OTSession(apiKey: apiKey, sessionId: sessionId, delegate: self)
-
+        
         var error: OTError?
         session?.connect(withToken: token, error: &error)
 
@@ -148,7 +148,7 @@ class GameViewController : UIViewController {
         captureSession.addOutput(videoOutput)
         captureSession.connections.first!.videoOrientation = .portraitUpsideDown
         captureSession.commitConfiguration()
-        captureSession.startRunning()
+//        captureSession.startRunning()
         preview?.videoPreviewLayer.session = captureSession
     }
 
@@ -383,6 +383,9 @@ extension GameViewController : OTSessionDelegate {
         let settings = OTPublisherSettings()
         settings.name = UIDevice.current.name
         publisher = OTPublisher(delegate: self, settings: settings)
+        let capture = ExampleVideoCapture()
+        capture.captureSession = captureSession
+        publisher?.videoCapture = capture
         guard let publisher = publisher else {
             return
         }
@@ -393,8 +396,8 @@ extension GameViewController : OTSessionDelegate {
             print(error!)
             return
         }
-
-//        captureSession.startRunning()
+        
+        captureSession.startRunning()
 
 //        guard let publisherView = publisher.view else {
 //            return

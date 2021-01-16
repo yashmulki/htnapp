@@ -23,6 +23,7 @@
 		A17511DD25B2CFB80092AAA1 /* hawaii.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A17511DC25B2CFB80092AAA1 /* hawaii.mp3 */; };
 		A17511EA25B33AA90092AAA1 /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17511E925B33AA90092AAA1 /* RoundedView.swift */; };
 		A17511ED25B33BD30092AAA1 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17511EC25B33BD30092AAA1 /* CircularProgressView.swift */; };
+		A17511F125B3811B0092AAA1 /* CustomVideoInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17511F025B3811B0092AAA1 /* CustomVideoInput.swift */; };
 		B14E1AA6CB1669F7D02FAA41 /* Pods_htnappui.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97C071C88EF122354F030CAF /* Pods_htnappui.framework */; };
 		B89C8F9E25B2E9DF0086304B /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = A17511D925B2C88A0092AAA1 /* Introspect */; };
 		B89C8FA125B2EDD70086304B /* GameController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B89C8FA025B2EDD70086304B /* GameController.storyboard */; };
@@ -50,6 +51,7 @@
 		A17511DC25B2CFB80092AAA1 /* hawaii.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = hawaii.mp3; sourceTree = "<group>"; };
 		A17511E925B33AA90092AAA1 /* RoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
 		A17511EC25B33BD30092AAA1 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
+		A17511F025B3811B0092AAA1 /* CustomVideoInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomVideoInput.swift; sourceTree = "<group>"; };
 		B89C8FA025B2EDD70086304B /* GameController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GameController.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -122,6 +124,7 @@
 				A17511B325B2A14B0092AAA1 /* Info.plist */,
 				A17511B025B2A14B0092AAA1 /* Preview Content */,
 				3CE92DBDCDF37EA4186348B8 /* Game.swift */,
+				A17511F025B3811B0092AAA1 /* CustomVideoInput.swift */,
 			);
 			path = htnappui;
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 				A17511D025B2B9460092AAA1 /* Friends.swift in Sources */,
 				A17511C725B2A5660092AAA1 /* Carousel.swift in Sources */,
 				A17511EA25B33AA90092AAA1 /* RoundedView.swift in Sources */,
+				A17511F125B3811B0092AAA1 /* CustomVideoInput.swift in Sources */,
 				A17511C425B2A4A00092AAA1 /* SharedState.swift in Sources */,
 				A17511BC25B2A2170092AAA1 /* Models.swift in Sources */,
 				A17511ED25B33BD30092AAA1 /* CircularProgressView.swift in Sources */,
