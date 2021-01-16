@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,10 +13,6 @@
         <scene sceneID="ksj-6y-6Rd">
             <objects>
                 <viewController storyboardIdentifier="GameViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="LUL-gL-odI" customClass="GameViewController" customModule="htnappui" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="jbY-Kf-IuH"/>
-                        <viewControllerLayoutGuide type="bottom" id="Z7O-6F-Mz8"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="TOv-83-26G">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -70,13 +67,16 @@
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="labelColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="76" id="7oc-5g-aVg"/>
+                                        </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="20"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CCD-s8-uK6" customClass="RoundedCornerView" customModule="htnappui" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CCD-s8-uK6" customClass="RoundedCornerView" customModule="htnappui" customModuleProvider="target">
                                         <rect key="frame" x="8" y="52" width="359" height="51"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Xc-I7-ZzC">
@@ -100,6 +100,9 @@
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="labelColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="51" id="3BB-1n-fL6"/>
+                                        </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="20"/>
@@ -109,27 +112,22 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="Odx-z4-Smb" firstAttribute="trailing" secondItem="Mur-iE-N7Z" secondAttribute="trailingMargin" id="A2N-dN-bJu"/>
-                                    <constraint firstItem="Odx-z4-Smb" firstAttribute="leading" secondItem="CCD-s8-uK6" secondAttribute="leading" id="DPC-mM-uuP"/>
-                                    <constraint firstItem="Odx-z4-Smb" firstAttribute="trailing" secondItem="CCD-s8-uK6" secondAttribute="trailing" id="JNs-Dt-LQm"/>
-                                    <constraint firstItem="Odx-z4-Smb" firstAttribute="top" secondItem="Mur-iE-N7Z" secondAttribute="top" constant="712" id="eM4-Ln-9Xt"/>
-                                    <constraint firstAttribute="bottom" secondItem="Odx-z4-Smb" secondAttribute="bottom" constant="24" id="m8b-zX-kOc"/>
-                                    <constraint firstItem="Odx-z4-Smb" firstAttribute="leading" secondItem="Mur-iE-N7Z" secondAttribute="leadingMargin" id="qqo-GF-GOT"/>
+                                    <constraint firstAttribute="trailing" secondItem="CCD-s8-uK6" secondAttribute="trailing" constant="8" id="OEX-8W-oZ8"/>
+                                    <constraint firstItem="CCD-s8-uK6" firstAttribute="leading" secondItem="Mur-iE-N7Z" secondAttribute="leading" constant="8" id="Qgw-ML-FpV"/>
+                                    <constraint firstItem="Odx-z4-Smb" firstAttribute="leading" secondItem="Mur-iE-N7Z" secondAttribute="leading" constant="8" id="YwL-dL-7bC"/>
+                                    <constraint firstAttribute="bottom" secondItem="Odx-z4-Smb" secondAttribute="bottom" constant="24" id="Z1n-EH-a3G"/>
+                                    <constraint firstAttribute="trailing" secondItem="Odx-z4-Smb" secondAttribute="trailing" constant="8" id="v40-AE-7je"/>
+                                    <constraint firstItem="CCD-s8-uK6" firstAttribute="top" secondItem="Mur-iE-N7Z" secondAttribute="top" constant="52" id="yXd-mL-DvN"/>
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="Joi-hD-KZP"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Mur-iE-N7Z" firstAttribute="trailing" secondItem="TOv-83-26G" secondAttribute="trailing" id="FQX-od-Xc7"/>
-                            <constraint firstItem="Mur-iE-N7Z" firstAttribute="trailing" secondItem="TOv-83-26G" secondAttribute="trailing" id="JFQ-cN-2Jw"/>
-                            <constraint firstItem="Mur-iE-N7Z" firstAttribute="top" secondItem="TOv-83-26G" secondAttribute="top" id="YTA-LJ-WIK"/>
-                            <constraint firstAttribute="bottom" secondItem="Mur-iE-N7Z" secondAttribute="bottom" id="Yeg-56-MZS"/>
-                            <constraint firstItem="Mur-iE-N7Z" firstAttribute="centerY" secondItem="TOv-83-26G" secondAttribute="centerY" id="bQt-ch-wei"/>
-                            <constraint firstItem="Mur-iE-N7Z" firstAttribute="centerX" secondItem="TOv-83-26G" secondAttribute="centerX" id="jE2-ds-sDP"/>
-                            <constraint firstItem="Mur-iE-N7Z" firstAttribute="top" secondItem="TOv-83-26G" secondAttribute="top" id="mPv-JX-gtl"/>
-                            <constraint firstItem="Mur-iE-N7Z" firstAttribute="leading" secondItem="TOv-83-26G" secondAttribute="leading" id="nXo-pn-zRV"/>
-                            <constraint firstAttribute="bottom" secondItem="Mur-iE-N7Z" secondAttribute="bottom" id="q97-PV-RrB"/>
-                            <constraint firstItem="Mur-iE-N7Z" firstAttribute="leading" secondItem="TOv-83-26G" secondAttribute="leading" id="tk1-np-Kjo"/>
+                            <constraint firstAttribute="bottom" secondItem="Mur-iE-N7Z" secondAttribute="bottom" id="3t4-bB-CED"/>
+                            <constraint firstItem="Mur-iE-N7Z" firstAttribute="top" secondItem="TOv-83-26G" secondAttribute="top" id="GLA-Vw-lMR"/>
+                            <constraint firstItem="Mur-iE-N7Z" firstAttribute="leading" secondItem="Joi-hD-KZP" secondAttribute="leading" id="P8S-Rd-aYw"/>
+                            <constraint firstItem="Mur-iE-N7Z" firstAttribute="trailing" secondItem="Joi-hD-KZP" secondAttribute="trailing" id="hOJ-nZ-a8O"/>
                         </constraints>
                     </view>
                     <connections>

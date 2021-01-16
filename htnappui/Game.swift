@@ -71,7 +71,7 @@ class GameViewController : UIViewController {
     
     var lastCompletionTimeStamp: Date = Date()
     
-    func checkIfExercise(recognizedPoints: [VNRecognizedPoint]) {
+    func checkIfExercise(recognizedPoints: [VNRecognizedPointKey:VNRecognizedPoint]) {
         DispatchQueue.main.async { [self] in
             
             // Make sure it doesn't keep repeated counting
@@ -216,6 +216,8 @@ class GameViewController : UIViewController {
                 .bodyLandmarkKeyRightAnkle,
             ]
 
+            
+            checkIfExercise(recognizedPoints: recognizedPoints)
             
             // Retrieve the CGPoints containing the normalized X and Y coordinates.
             let imagePoints: [CGPoint] = torsoKeys.compactMap {

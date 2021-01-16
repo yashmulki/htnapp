@@ -18,7 +18,7 @@ enum RoutineType: Int {
 
 protocol Move {
     var name: String {get}
-    func checkActive(recognizedPoints: [VNRecognizedPoint]) -> Bool // Basically takes in the set of points and confirms that you are in the right mode
+    func checkActive(recognizedPoints: [VNRecognizedPointKey: VNRecognizedPoint]) -> Bool // Basically takes in the set of points and confirms that you are in the right mode
 }
 
 struct RoutineStep {
@@ -43,13 +43,16 @@ struct Routine {
 }
 
 
+func angleBetween(point1: CGPoint, point2: CGPoint) -> CGFloat {
+    return atan2(abs(point1.x-point2.x), abs(point1.y-point2.y))
+}
 
 struct JumpingJack: Move {
     
     var name: String = "Jumping Jack"
     
-    func checkActive(recognizedPoints: [VNRecognizedPoint]) -> Bool {
-        
+    func checkActive(recognizedPoints: [VNRecognizedPointKey: VNRecognizedPoint]) -> Bool {
+        // This is where you check the angles and stuff
         return true
     }
 
