@@ -261,7 +261,7 @@ struct GameSetup: View {
             }
             // Just something to get started.
             NavigationLink(
-                destination: Game(vonageInfo: vonageInfo, navigated: $navigate),
+                destination: Game(vonageInfo: vonageInfo.sessionId.isEmpty ? nil : vonageInfo, navigated: $navigate),
                 isActive: $navigate,
                 label: {
                     Text("Start")

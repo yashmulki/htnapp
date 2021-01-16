@@ -80,7 +80,7 @@ class ExampleVideoCapture: NSObject, OTVideoCapture {
     }
     
     override init() {
-        capturePreset = AVCaptureSession.Preset.vga640x480
+        capturePreset = AVCaptureSession.Preset.hd1280x720
         captureQueue = DispatchQueue(label: "com.tokbox.VideoCapture", attributes: [])
         (captureWidth, captureHeight) = capturePreset.dimensionForCapturePreset()
         videoFrame = OTVideoFrame(format: OTVideoFormat(nv12WithWidth: captureWidth, height: captureHeight))
