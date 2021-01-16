@@ -8,10 +8,15 @@
 import SwiftUI
 import Introspect
 
+let api = "https://dashboard.heroku.com/apps/exeroom"
+
 struct GameSetup: View {
     var routine: Routine
     @State var friendChosen: Bool = false
     @State var friend: Person? = nil
+
+    @State private var roomCode = ""
+    @State var vonageInfo = VonageInfo()
 
     @State var navigate = false
     
@@ -41,8 +46,90 @@ struct GameSetup: View {
                         }
                     ).padding(.vertical, 20)
 
+                    // This is going to look so shitty lol.
+                    TextField("Room Code", text: $roomCode)
+
+                    Button(action: {
+                        if roomCode.isEmpty {
+                            let url = URL(string: "\(api)/rooms/create")!
+
+                            let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+                                guard let data = data else { return }
+
+                                guard let json = try? JSONSerialization.jsonObject(
+                                    with: data, options: []) as? [String: Any] else { return }
+                                guard let roomId = json["room_id"] as? String else { return }
+
+                                let url = URL(string: "\(api)/rooms/join")!
+
+                                let requestParams: [String:Any] = [
+                                    "room_id": roomId,
+                                    "user_id": UIDevice.current.name
+                                ]
+                                guard let requestData =
+                                    try? JSONSerialization.data(withJSONObject: requestParams) else { return }
+
+                                var request = URLRequest(url: url)
+                                request.httpMethod = "POST"
+                                request.httpBody = requestData
+                                
+                                let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                                    guard let data = data else { return }
+
+                                    guard let json = try? JSONSerialization.jsonObject(
+                                        with: data, options: []) as? [String: Any] else { return }
+                                    guard let sessionId = json["session_id"] as? String else { return }
+                                    guard let token = json["token"] as? String else { return }
+
+                                    // I feel paralyzed to move this crazy action call out of the function.
+                                    vonageInfo.sessionId = sessionId
+                                    vonageInfo.token = token
+                                }
+                                
+                                task.resume()
+                            }
+
+                            task.resume()
+                        } else {
+                            let url = URL(string: "\(api)/rooms/join")!
+
+                            let requestParams: [String:Any] = [
+                                "room_id": roomCode,
+                                "user_id": UIDevice.current.name
+                            ]
+                            guard let requestData =
+                                try? JSONSerialization.data(withJSONObject: requestParams) else { return }
+
+                            var request = URLRequest(url: url)
+                            request.httpMethod = "POST"
+                            request.httpBody = requestData
+
+                            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                                guard let data = data else { return }
+
+                                guard let json = try? JSONSerialization.jsonObject(
+                                    with: data, options: []) as? [String: Any] else { return }
+                                guard let sessionId = json["session_id"] as? String else { return }
+                                guard let token = json["token"] as? String else { return }
+
+                                // ::::|||||
+                                vonageInfo.sessionId = sessionId
+                                vonageInfo.token = token
+                            }
+
+                            task.resume()
+                        }
+                    }) {
+                        if !vonageInfo.sessionId.isEmpty {
+                            Text("Connected")
+                        } else if roomCode.isEmpty {
+                            Text("New Room")
+                        } else {
+                            Text("Connect")
+                        }
+                    }
+
                     HStack {
-                        
                         VStack {
                             VStack {
                                 Image("mypfp").resizable().frame(width: 75, height: 75).clipShape(Circle()).padding()
