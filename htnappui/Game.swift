@@ -60,6 +60,8 @@ class GameViewController : UIViewController {
     let imageWidth = 1280
     let imageHeight = 720
     
+    var customInput: ExampleVideoCapture?
+    var videoInput: AVCaptureDeviceInput?
     
     // Also should keep polling the backend probably to check for other person's score (once every second?)
     // Also send our score each time
@@ -134,11 +136,18 @@ class GameViewController : UIViewController {
         
         guard let videoDeviceInput = try? AVCaptureDeviceInput(device: videoDevice!),
               captureSession.canAddInput(videoDeviceInput) else { return }
-
+        
+        videoInput = videoDeviceInput
         
         captureSession.addInput(videoDeviceInput)
 
         let videoOutput = AVCaptureVideoDataOutput()
+        
+        videoOutput.alwaysDiscardsLateVideoFrames = true
+        videoOutput.videoSettings = [
+                    kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange)
+                ]
+        
         guard captureSession.canAddOutput(videoOutput) else { return }
 
         dispatchQueue = DispatchQueue(label: "camera")
@@ -146,6 +155,8 @@ class GameViewController : UIViewController {
 
 //        captureSession.sessionPreset = .medium
         captureSession.addOutput(videoOutput)
+        captureSession.usesApplicationAudioSession = false
+
         captureSession.connections.first!.videoOrientation = .portraitUpsideDown
         captureSession.commitConfiguration()
 //        captureSession.startRunning()
@@ -184,7 +195,7 @@ class GameViewController : UIViewController {
     }
 
     func bodyPoseHandler(request: VNRequest, error: Error?) {
-        return
+        
 
         guard let observations = request.results as? [VNRecognizedPointsObservation] else {
             return
@@ -373,6 +384,8 @@ extension GameViewController : AVCaptureVideoDataOutputSampleBufferDelegate {
         } catch {
             print("Error: \(error)")
         }
+        
+        customInput?.captureOutput(output, didOutput: sampleBuffer, from: connection)
     }
 }
 
@@ -383,9 +396,10 @@ extension GameViewController : OTSessionDelegate {
         let settings = OTPublisherSettings()
         settings.name = UIDevice.current.name
         publisher = OTPublisher(delegate: self, settings: settings)
-        let capture = ExampleVideoCapture()
-        capture.captureSession = captureSession
-        publisher?.videoCapture = capture
+        customInput = ExampleVideoCapture()
+        customInput?.captureSession = captureSession
+        customInput?.videoInput = videoInput
+        publisher?.videoCapture = customInput
         guard let publisher = publisher else {
             return
         }

@@ -89,10 +89,10 @@ class ExampleVideoCapture: NSObject, OTVideoCapture {
     // MARK: - AVFoundation functions
     func setupAudioVideoSession() throws {
 //        captureSession = session
-        captureSession?.beginConfiguration()
-
-        captureSession?.sessionPreset = capturePreset
-        captureSession?.usesApplicationAudioSession = false
+//        captureSession?.beginConfiguration()
+//
+//        captureSession?.sessionPreset = capturePreset
+//        captureSession?.usesApplicationAudioSession = false
 
 //        // Configure Camera Input
 //        guard let device = camera(withPosition: .front)
@@ -107,23 +107,23 @@ class ExampleVideoCapture: NSObject, OTVideoCapture {
 //        }
 //        captureSession?.addInput(videoInput)
         
-        // Configure Ouput
-        videoOutput = AVCaptureVideoDataOutput()
-        videoOutput?.alwaysDiscardsLateVideoFrames = true
-        videoOutput?.videoSettings = [
-            kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange)
-        ]
-        videoOutput?.setSampleBufferDelegate(self, queue: captureQueue)
+//        // Configure Ouput
+//        videoOutput = AVCaptureVideoDataOutput()
+//        videoOutput?.alwaysDiscardsLateVideoFrames = true
+//        videoOutput?.videoSettings = [
+//            kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange)
+//        ]
+//        videoOutput?.setSampleBufferDelegate(self, queue: captureQueue)
+//
+//        guard let videoOutput = self.videoOutput else {
+//            print("There was an error creating videoOutput")
+//            return
+//        }
+//        captureSession?.addOutput(videoOutput)
+//        setFrameRate()
+//        captureSession?.commitConfiguration()
         
-        guard let videoOutput = self.videoOutput else {
-            print("There was an error creating videoOutput")
-            return
-        }
-        captureSession?.addOutput(videoOutput)
-        setFrameRate()
-        captureSession?.commitConfiguration()
-        
-        captureSession?.startRunning()
+//        captureSession?.startRunning()
     }
     
     fileprivate func frameRateRange(forFrameRate fps: Int) -> AVFrameRateRange? {
