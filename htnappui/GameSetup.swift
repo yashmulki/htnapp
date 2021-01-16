@@ -9,11 +9,11 @@ import SwiftUI
 import Introspect
 
 struct GameSetup: View {
-    
-    
     var routine: Routine
     @State var friendChosen: Bool = false
     @State var friend: Person? = nil
+
+    @State var navigate = false
     
     var body: some View {
         VStack {
@@ -30,8 +30,17 @@ struct GameSetup: View {
                             }.font(.system(size: 15, weight: .light, design: .default))
                         }
                         Spacer()
-                    }.padding(.bottom, 50).padding(.top, 20).padding(.leading, 20)
-                    
+                    }.padding(.bottom, 20).padding(.top, 20).padding(.leading, 20)
+
+                    // Just something to get started.
+                    NavigationLink(
+                        destination: Game(),
+                        isActive: $navigate,
+                        label: {
+                            Text("Start Game")
+                        }
+                    ).padding(.vertical, 20)
+
                     HStack {
                         
                         VStack {
