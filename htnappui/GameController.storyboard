@@ -23,9 +23,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mur-iE-N7Z" customClass="PreviewView" customModule="htnappui" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Odx-z4-Smb" customClass="RoundedCornerView" customModule="htnappui" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Odx-z4-Smb" customClass="RoundedCornerView" customModule="htnappui" customModuleProvider="target">
                                         <rect key="frame" x="8" y="712" width="359" height="76"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tXB-rF-em5" customClass="RoundedCornerView" customModule="htnappui" customModuleProvider="target">
                                                 <rect key="frame" x="8" y="5" width="66" height="66"/>
@@ -77,9 +76,8 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CCD-s8-uK6" customClass="RoundedCornerView" customModule="htnappui" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CCD-s8-uK6" customClass="RoundedCornerView" customModule="htnappui" customModuleProvider="target">
                                         <rect key="frame" x="8" y="52" width="359" height="51"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Xc-I7-ZzC">
                                                 <rect key="frame" x="309" y="8" width="32" height="38"/>
@@ -110,6 +108,14 @@
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="Odx-z4-Smb" firstAttribute="trailing" secondItem="Mur-iE-N7Z" secondAttribute="trailingMargin" id="A2N-dN-bJu"/>
+                                    <constraint firstItem="Odx-z4-Smb" firstAttribute="leading" secondItem="CCD-s8-uK6" secondAttribute="leading" id="DPC-mM-uuP"/>
+                                    <constraint firstItem="Odx-z4-Smb" firstAttribute="trailing" secondItem="CCD-s8-uK6" secondAttribute="trailing" id="JNs-Dt-LQm"/>
+                                    <constraint firstItem="Odx-z4-Smb" firstAttribute="top" secondItem="Mur-iE-N7Z" secondAttribute="top" constant="712" id="eM4-Ln-9Xt"/>
+                                    <constraint firstAttribute="bottom" secondItem="Odx-z4-Smb" secondAttribute="bottom" constant="24" id="m8b-zX-kOc"/>
+                                    <constraint firstItem="Odx-z4-Smb" firstAttribute="leading" secondItem="Mur-iE-N7Z" secondAttribute="leadingMargin" id="qqo-GF-GOT"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
