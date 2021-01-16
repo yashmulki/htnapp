@@ -35,16 +35,9 @@ struct GameSetup: View {
                             }.font(.system(size: 15, weight: .light, design: .default))
                         }
                         Spacer()
-                    }.padding(.bottom, 20).padding(.top, 20).padding(.leading, 20)
+                    }.padding(.bottom, 20).padding(.top, 120).padding(.leading, 20)
 
-                    // Just something to get started.
-                    NavigationLink(
-                        destination: Game(),
-                        isActive: $navigate,
-                        label: {
-                            Text("Start Game")
-                        }
-                    ).padding(.vertical, 20)
+                    
 
                     // This is going to look so shitty lol.
                     TextField("Room Code", text: $roomCode)
@@ -172,7 +165,7 @@ struct GameSetup: View {
                     }.padding(.bottom, 50)
                     
                     HStack {
-                        Text("Friends")
+                        Text("Invite Friends")
                         Spacer()
                     }.padding(.leading, 20).padding(.bottom, 20)
                     
@@ -244,19 +237,24 @@ struct GameSetup: View {
                     
                 }
             }
-            Button(action: {
-                print("Hello button tapped!")
-            }) {
-                Text("Start")
-                    .padding([.leading, .trailing], 40)
-                    .padding([.top, .bottom], 5)
-                    .foregroundColor(.white)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 20)
-                            .stroke(Color.white, lineWidth: 5)
-                    )
-            }.padding()
-        }.navigationBarTitle(Text("Game Setup"), displayMode: .inline).introspectTabBarController { (UITabBarController) in
+            // Just something to get started.
+            NavigationLink(
+                destination: Game(vonageInfo: vonageInfo, navigated: $navigate),
+                isActive: $navigate,
+                label: {
+                    Text("Start")
+                        .padding([.leading, .trailing], 40)
+                        .padding([.top, .bottom], 5)
+                        .foregroundColor(.white)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 20)
+                                .stroke(Color.white, lineWidth: 5)
+                        )
+                  
+                }
+            ).padding(.vertical, 20)
+            
+        }.edgesIgnoringSafeArea(.all).navigationBarTitle(Text("Game Setup"), displayMode: .inline).introspectTabBarController { (UITabBarController) in
             UITabBarController.tabBar.isHidden = true
         }
     }

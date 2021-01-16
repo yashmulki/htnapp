@@ -16,12 +16,14 @@
 		A17511C125B2A4910092AAA1 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17511C025B2A4910092AAA1 /* HomeScreen.swift */; };
 		A17511C425B2A4A00092AAA1 /* SharedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17511C325B2A4A00092AAA1 /* SharedState.swift */; };
 		A17511C725B2A5660092AAA1 /* Carousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17511C625B2A5660092AAA1 /* Carousel.swift */; };
-		A17511CA25B2B79E0092AAA1 /* Star.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17511C925B2B79E0092AAA1 /* Star.swift */; };
 		A17511CD25B2B89F0092AAA1 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17511CC25B2B89F0092AAA1 /* Profile.swift */; };
 		A17511D025B2B9460092AAA1 /* Friends.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17511CF25B2B9460092AAA1 /* Friends.swift */; };
 		A17511D325B2B9C30092AAA1 /* Leaderboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17511D225B2B9C30092AAA1 /* Leaderboards.swift */; };
 		A17511D625B2BA220092AAA1 /* GameSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17511D525B2BA220092AAA1 /* GameSetup.swift */; };
 		A17511DD25B2CFB80092AAA1 /* hawaii.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A17511DC25B2CFB80092AAA1 /* hawaii.mp3 */; };
+		A17511EA25B33AA90092AAA1 /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17511E925B33AA90092AAA1 /* RoundedView.swift */; };
+		A17511ED25B33BD30092AAA1 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17511EC25B33BD30092AAA1 /* CircularProgressView.swift */; };
+		B14E1AA6CB1669F7D02FAA41 /* Pods_htnappui.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97C071C88EF122354F030CAF /* Pods_htnappui.framework */; };
 		B89C8F9E25B2E9DF0086304B /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = A17511D925B2C88A0092AAA1 /* Introspect */; };
 		B89C8FA125B2EDD70086304B /* GameController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B89C8FA025B2EDD70086304B /* GameController.storyboard */; };
 /* End PBXBuildFile section */
@@ -41,12 +43,13 @@
 		A17511C025B2A4910092AAA1 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		A17511C325B2A4A00092AAA1 /* SharedState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedState.swift; sourceTree = "<group>"; };
 		A17511C625B2A5660092AAA1 /* Carousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Carousel.swift; sourceTree = "<group>"; };
-		A17511C925B2B79E0092AAA1 /* Star.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Star.swift; sourceTree = "<group>"; };
 		A17511CC25B2B89F0092AAA1 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		A17511CF25B2B9460092AAA1 /* Friends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friends.swift; sourceTree = "<group>"; };
 		A17511D225B2B9C30092AAA1 /* Leaderboards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leaderboards.swift; sourceTree = "<group>"; };
 		A17511D525B2BA220092AAA1 /* GameSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSetup.swift; sourceTree = "<group>"; };
 		A17511DC25B2CFB80092AAA1 /* hawaii.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = hawaii.mp3; sourceTree = "<group>"; };
+		A17511E925B33AA90092AAA1 /* RoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
+		A17511EC25B33BD30092AAA1 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		B89C8FA025B2EDD70086304B /* GameController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GameController.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -56,6 +59,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B89C8F9E25B2E9DF0086304B /* Introspect in Frameworks */,
+				B14E1AA6CB1669F7D02FAA41 /* Pods_htnappui.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,7 +105,9 @@
 			isa = PBXGroup;
 			children = (
 				B89C8FA025B2EDD70086304B /* GameController.storyboard */,
+				A17511EC25B33BD30092AAA1 /* CircularProgressView.swift */,
 				A17511AA25B2A14A0092AAA1 /* htnappuiApp.swift */,
+				A17511E925B33AA90092AAA1 /* RoundedView.swift */,
 				A17511AC25B2A14A0092AAA1 /* ContentView.swift */,
 				A17511D525B2BA220092AAA1 /* GameSetup.swift */,
 				A17511BB25B2A2170092AAA1 /* Models.swift */,
@@ -109,7 +115,6 @@
 				A17511C025B2A4910092AAA1 /* HomeScreen.swift */,
 				A17511D225B2B9C30092AAA1 /* Leaderboards.swift */,
 				A17511CC25B2B89F0092AAA1 /* Profile.swift */,
-				A17511C925B2B79E0092AAA1 /* Star.swift */,
 				A17511C625B2A5660092AAA1 /* Carousel.swift */,
 				A17511DC25B2CFB80092AAA1 /* hawaii.mp3 */,
 				A17511C325B2A4A00092AAA1 /* SharedState.swift */,
@@ -239,10 +244,11 @@
 				A17511AB25B2A14A0092AAA1 /* htnappuiApp.swift in Sources */,
 				A17511D625B2BA220092AAA1 /* GameSetup.swift in Sources */,
 				A17511D025B2B9460092AAA1 /* Friends.swift in Sources */,
-				A17511CA25B2B79E0092AAA1 /* Star.swift in Sources */,
 				A17511C725B2A5660092AAA1 /* Carousel.swift in Sources */,
+				A17511EA25B33AA90092AAA1 /* RoundedView.swift in Sources */,
 				A17511C425B2A4A00092AAA1 /* SharedState.swift in Sources */,
 				A17511BC25B2A2170092AAA1 /* Models.swift in Sources */,
+				A17511ED25B33BD30092AAA1 /* CircularProgressView.swift in Sources */,
 				3CE92C4D331CECDD5445DD43 /* Game.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -374,7 +380,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"htnappui/Preview Content\"";
-				DEVELOPMENT_TEAM = ULF85QF8XX;
+				DEVELOPMENT_TEAM = MX7F8VC2CH;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = htnappui/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -397,7 +403,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"htnappui/Preview Content\"";
-				DEVELOPMENT_TEAM = ULF85QF8XX;
+				DEVELOPMENT_TEAM = MX7F8VC2CH;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = htnappui/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,38 +12,148 @@
         <scene sceneID="ksj-6y-6Rd">
             <objects>
                 <viewController storyboardIdentifier="GameViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="LUL-gL-odI" customClass="GameViewController" customModule="htnappui" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jbY-Kf-IuH"/>
+                        <viewControllerLayoutGuide type="bottom" id="Z7O-6F-Mz8"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="TOv-83-26G">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mur-iE-N7Z" customClass="PreviewView" customModule="htnappui" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Odx-z4-Smb" customClass="RoundedCornerView" customModule="htnappui" customModuleProvider="target">
+                                        <rect key="frame" x="8" y="712" width="359" height="76"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tXB-rF-em5" customClass="RoundedCornerView" customModule="htnappui" customModuleProvider="target">
+                                                <rect key="frame" x="8" y="5" width="66" height="66"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="34"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9o5-R9-i37" customClass="RoundedCornerView" customModule="htnappui" customModuleProvider="target">
+                                                <rect key="frame" x="82" y="5" width="66" height="66"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="34"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Qz3-UI-1vW">
+                                                <rect key="frame" x="156" y="26" width="195" height="4"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </progressView>
+                                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="p8y-IC-uq2">
+                                                <rect key="frame" x="156" y="59" width="195" height="4"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </progressView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BeL-iZ-xK7">
+                                                <rect key="frame" x="156" y="5" width="29" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" systemColor="systemGray6Color"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Opponent Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xnd-v1-JeB">
+                                                <rect key="frame" x="156" y="34" width="126" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" systemColor="systemGray6Color"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="labelColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CCD-s8-uK6" customClass="RoundedCornerView" customModule="htnappui" customModuleProvider="target">
+                                        <rect key="frame" x="8" y="52" width="359" height="51"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Xc-I7-ZzC">
+                                                <rect key="frame" x="309" y="8" width="32" height="38"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                <color key="tintColor" systemColor="systemGray6Color"/>
+                                                <state key="normal">
+                                                    <imageReference key="image" image="xmark.circle.fill" catalog="system" symbolScale="large"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="exitGame:" destination="LUL-gL-odI" eventType="touchUpInside" id="THh-ma-X3h"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Activity 3/5: Squats           4/15" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KgO-z2-zwt">
+                                                <rect key="frame" x="11" y="15" width="294" height="23"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                                <color key="textColor" systemColor="secondarySystemGroupedBackgroundColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="labelColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="cK6-rS-PS7"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Mur-iE-N7Z" firstAttribute="trailing" secondItem="cK6-rS-PS7" secondAttribute="trailing" id="FQX-od-Xc7"/>
+                            <constraint firstItem="Mur-iE-N7Z" firstAttribute="trailing" secondItem="TOv-83-26G" secondAttribute="trailing" id="FQX-od-Xc7"/>
+                            <constraint firstItem="Mur-iE-N7Z" firstAttribute="trailing" secondItem="TOv-83-26G" secondAttribute="trailing" id="JFQ-cN-2Jw"/>
                             <constraint firstItem="Mur-iE-N7Z" firstAttribute="top" secondItem="TOv-83-26G" secondAttribute="top" id="YTA-LJ-WIK"/>
+                            <constraint firstAttribute="bottom" secondItem="Mur-iE-N7Z" secondAttribute="bottom" id="Yeg-56-MZS"/>
                             <constraint firstItem="Mur-iE-N7Z" firstAttribute="centerY" secondItem="TOv-83-26G" secondAttribute="centerY" id="bQt-ch-wei"/>
                             <constraint firstItem="Mur-iE-N7Z" firstAttribute="centerX" secondItem="TOv-83-26G" secondAttribute="centerX" id="jE2-ds-sDP"/>
+                            <constraint firstItem="Mur-iE-N7Z" firstAttribute="top" secondItem="TOv-83-26G" secondAttribute="top" id="mPv-JX-gtl"/>
+                            <constraint firstItem="Mur-iE-N7Z" firstAttribute="leading" secondItem="TOv-83-26G" secondAttribute="leading" id="nXo-pn-zRV"/>
                             <constraint firstAttribute="bottom" secondItem="Mur-iE-N7Z" secondAttribute="bottom" id="q97-PV-RrB"/>
-                            <constraint firstItem="Mur-iE-N7Z" firstAttribute="leading" secondItem="cK6-rS-PS7" secondAttribute="leading" id="tk1-np-Kjo"/>
+                            <constraint firstItem="Mur-iE-N7Z" firstAttribute="leading" secondItem="TOv-83-26G" secondAttribute="leading" id="tk1-np-Kjo"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="headerLabel" destination="KgO-z2-zwt" id="wmp-II-aN3"/>
+                        <outlet property="opponentLabel" destination="Xnd-v1-JeB" id="sZP-Ry-IPl"/>
+                        <outlet property="opponentProgress" destination="p8y-IC-uq2" id="ZVK-og-jvc"/>
+                        <outlet property="opponentStreamView" destination="9o5-R9-i37" id="i3e-Yz-mgj"/>
                         <outlet property="preview" destination="Mur-iE-N7Z" id="gFG-1i-8zx"/>
+                        <outlet property="youProgress" destination="Qz3-UI-1vW" id="8Rj-x8-iF1"/>
+                        <outlet property="yourStreamView" destination="tXB-rF-em5" id="W53-WK-0Ql"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vWS-sU-wcy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="27.536231884057973" y="40.848214285714285"/>
+            <point key="canvasLocation" x="24.800000000000001" y="39.90147783251232"/>
         </scene>
     </scenes>
     <resources>
+        <image name="xmark.circle.fill" catalog="system" width="128" height="121"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="secondarySystemGroupedBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

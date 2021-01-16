@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Vision
 
 enum RoutineDifficulty: Int {
     case easy, medium, hard
@@ -17,7 +18,7 @@ enum RoutineType: Int {
 
 protocol Move {
     var name: String {get}
-    func checkActive() -> Bool // Basically takes in the set of points and confirms that you are in the right mode
+    func checkActive(recognizedPoints: [VNRecognizedPoint]) -> Bool // Basically takes in the set of points and confirms that you are in the right mode
 }
 
 struct RoutineStep {
@@ -47,7 +48,8 @@ struct JumpingJack: Move {
     
     var name: String = "Jumping Jack"
     
-    func checkActive() -> Bool {
+    func checkActive(recognizedPoints: [VNRecognizedPoint]) -> Bool {
+        
         return true
     }
 
