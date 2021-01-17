@@ -114,7 +114,11 @@ class GameViewController : UIViewController {
         // Move to next if available, or just end the game
         if activitiesIndex == routine.steps.count - 1 {
             // Go to the game end screen
-            gameOverCallback(true)
+            if vonageInfo == nil {
+                gameOverCallback(true)
+            }
+
+            // otherwise wait for backend to send vonage signal
         } else {
             finishedActivityParticles() //-> make this not trash first
             activitiesIndex += 1
@@ -527,6 +531,17 @@ extension GameViewController : OTSessionDelegate {
 
     func session(_ session: OTSession, streamDestroyed stream: OTStream) {
         print("A stream was destroyed in the session.")
+    }
+
+    func session(_ session: OTSession, receivedSignalType type: String?, from connection: OTConnection?, with string: String?) {
+        guard let data = string?.data(using: .utf8) else { return }
+        guard let json = try? JSONSerialization.jsonObject(with: data) as? [String:Any] else { return }
+        guard let gameOver = json["game_over"] as? Bool else { return }
+        guard let winner = json["winner_id"] as? String else { return }
+
+        if gameOver {
+            gameOverCallback(winner == UIDevice.current.name)
+        }
     }
 }
 
