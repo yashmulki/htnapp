@@ -58,7 +58,8 @@ struct GameSetup: View {
                             let url = URL(string: "\(api)/rooms/create")!
 
                             let requestParams: [String:Any] = [
-                                "user_id": UIDevice.current.name
+                                "user_id": UIDevice.current.name,
+                                "workout": "quick"
                             ]
                             guard let requestData =
                                 try? JSONSerialization.data(withJSONObject: requestParams) else { return }

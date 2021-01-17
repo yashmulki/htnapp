@@ -37,6 +37,7 @@ class GameViewController : UIViewController {
     
     @IBOutlet var headerLabel: UILabel!
     
+    @IBOutlet weak var instruction: UILabel!
     
     @IBOutlet var opponentStreamView: RoundedCornerView!
     
