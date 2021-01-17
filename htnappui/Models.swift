@@ -19,6 +19,7 @@ enum RoutineType: Int {
 protocol Move {
     var name: String { get }
     var evidenceMinimum: Int { get }
+    var tutorial: UIImage? { get }
     func checkActive(recognizedPoints: [VNRecognizedPointKey: VNRecognizedPoint]) -> Bool // Basically takes in the set of points and confirms that you are in the right mode
 }
 
@@ -52,7 +53,8 @@ func flip(_ p: CGPoint) -> CGPoint { CGPoint(x: 1 - p.x, y: 1 - p.y) }
 
 struct Squats: Move {
     var name: String = "Squats"
-    var evidenceMinimum: Int = 10
+    var evidenceMinimum: Int = 20
+    var tutorial: UIImage? = UIImage.gifImageWithName("squats")
     
     func checkActive(recognizedPoints: [VNRecognizedPointKey: VNRecognizedPoint]) -> Bool {
         let lh = recognizedPoints[.bodyLandmarkKeyLeftHip]
@@ -85,6 +87,7 @@ struct Squats: Move {
 struct Lunges : Move {
     var name: String = "Jumping Jacks"
     var evidenceMinimum: Int = 5
+    var tutorial: UIImage? = UIImage.gifImageWithName("lunges")
 
     func checkActive(recognizedPoints: [VNRecognizedPointKey: VNRecognizedPoint]) -> Bool {
         let lw = recognizedPoints[.bodyLandmarkKeyLeftWrist]
@@ -107,6 +110,7 @@ struct Lunges : Move {
 struct JumpingJack : Move {
     var name: String = "Jumping Jacks"
     var evidenceMinimum: Int = 1
+    var tutorial: UIImage? = UIImage.gifImageWithName("jumpingjacks")
     
     func checkActive(recognizedPoints: [VNRecognizedPointKey: VNRecognizedPoint]) -> Bool {
         let lw = recognizedPoints[.bodyLandmarkKeyLeftWrist]
@@ -177,7 +181,7 @@ var routine1 = Routine(
     coverImage: Image("exercise1"),
     steps: [
         RoutineStep(repetitions: 4, move: Squats()),
-//        RoutineStep(repetitions: 5, move: Lunges()),
+        RoutineStep(repetitions: 5, move: Lunges()),
         RoutineStep(repetitions: 8, move: JumpingJack()),
     ]
 )

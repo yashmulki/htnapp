@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Image references" minToolsVersion="12.0"/>
@@ -14,14 +14,14 @@
             <objects>
                 <viewController storyboardIdentifier="GameViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="LUL-gL-odI" customClass="GameViewController" customModule="htnappui" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TOv-83-26G">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mur-iE-N7Z" customClass="PreviewView" customModule="htnappui" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Odx-z4-Smb" customClass="RoundedCornerView" customModule="htnappui" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="712" width="359" height="76"/>
+                                        <rect key="frame" x="8" y="636" width="398" height="76"/>
                                         <subviews>
                                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Qz3-UI-1vW">
                                                 <rect key="frame" x="156" y="26" width="195" height="4"/>
@@ -57,7 +57,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CCD-s8-uK6" customClass="RoundedCornerView" customModule="htnappui" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="52" width="359" height="51"/>
+                                        <rect key="frame" x="8" y="52" width="398" height="51"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Xc-I7-ZzC">
                                                 <rect key="frame" x="309" y="8" width="32" height="38"/>
@@ -71,7 +71,7 @@
                                                     <action selector="exitGame:" destination="LUL-gL-odI" eventType="touchUpInside" id="THh-ma-X3h"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Activity 3/5: Squats           4/15" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KgO-z2-zwt">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Get Ready..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KgO-z2-zwt">
                                                 <rect key="frame" x="11" y="15" width="294" height="23"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
@@ -90,7 +90,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9o5-R9-i37" customClass="RoundedCornerView" customModule="htnappui" customModuleProvider="target">
-                                        <rect key="frame" x="24" y="639" width="128" height="135"/>
+                                        <rect key="frame" x="24" y="563" width="128" height="135"/>
                                         <color key="backgroundColor" systemColor="systemGray3Color"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="128" id="5vi-E5-L4V"/>
@@ -102,11 +102,23 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UtN-vG-MUB">
-                                        <rect key="frame" x="35" y="134" width="305" height="66"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="m7i-K3-yqp">
+                                        <rect key="frame" x="322" y="513" width="84" height="115"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="115" id="KgD-VY-3Sc"/>
+                                            <constraint firstAttribute="width" constant="84" id="Lp8-LU-Ogg"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <integer key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UtN-vG-MUB">
+                                        <rect key="frame" x="35" y="132" width="344" height="66"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Stand Up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1mo-ae-caR">
-                                                <rect key="frame" x="-11" y="6" width="326" height="53"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stand Up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1mo-ae-caR">
+                                                <rect key="frame" x="100" y="11.666666666666657" width="144" height="43"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -115,8 +127,11 @@
                                         </subviews>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
+                                            <constraint firstItem="1mo-ae-caR" firstAttribute="centerX" secondItem="UtN-vG-MUB" secondAttribute="centerX" id="2wZ-Dx-MES"/>
+                                            <constraint firstAttribute="height" constant="66" id="90P-m9-Bo5"/>
                                             <constraint firstItem="1mo-ae-caR" firstAttribute="centerX" secondItem="UtN-vG-MUB" secondAttribute="centerX" id="DKZ-oC-b1R"/>
                                             <constraint firstItem="1mo-ae-caR" firstAttribute="centerY" secondItem="UtN-vG-MUB" secondAttribute="centerY" id="jc6-Ot-GhO"/>
+                                            <constraint firstItem="1mo-ae-caR" firstAttribute="centerY" secondItem="UtN-vG-MUB" secondAttribute="centerY" id="ueV-WU-MBO"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -127,13 +142,17 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="UtN-vG-MUB" secondAttribute="trailing" constant="35" id="HQG-jk-nbT"/>
+                                    <constraint firstItem="UtN-vG-MUB" firstAttribute="leading" secondItem="Mur-iE-N7Z" secondAttribute="leading" constant="35" id="KHD-j5-vbW"/>
                                     <constraint firstAttribute="trailing" secondItem="CCD-s8-uK6" secondAttribute="trailing" constant="8" id="OEX-8W-oZ8"/>
                                     <constraint firstItem="CCD-s8-uK6" firstAttribute="leading" secondItem="Mur-iE-N7Z" secondAttribute="leading" constant="8" id="Qgw-ML-FpV"/>
-                                    <constraint firstItem="UtN-vG-MUB" firstAttribute="top" secondItem="CCD-s8-uK6" secondAttribute="bottom" constant="36" id="Tbl-Zi-1qd"/>
+                                    <constraint firstAttribute="trailing" secondItem="m7i-K3-yqp" secondAttribute="trailing" constant="8" id="XUX-Wg-q9V"/>
+                                    <constraint firstItem="UtN-vG-MUB" firstAttribute="top" secondItem="CCD-s8-uK6" secondAttribute="bottom" constant="29" id="YtT-Jm-Rak"/>
                                     <constraint firstItem="Odx-z4-Smb" firstAttribute="leading" secondItem="Mur-iE-N7Z" secondAttribute="leading" constant="8" id="YwL-dL-7bC"/>
                                     <constraint firstAttribute="bottom" secondItem="Odx-z4-Smb" secondAttribute="bottom" constant="24" id="Z1n-EH-a3G"/>
                                     <constraint firstItem="9o5-R9-i37" firstAttribute="leading" secondItem="Mur-iE-N7Z" secondAttribute="leading" constant="24" id="aQ1-es-NfL"/>
                                     <constraint firstAttribute="bottom" secondItem="9o5-R9-i37" secondAttribute="bottom" constant="38" id="gSC-tM-xJl"/>
+                                    <constraint firstItem="Odx-z4-Smb" firstAttribute="top" secondItem="m7i-K3-yqp" secondAttribute="bottom" constant="8" symbolic="YES" id="hmR-xe-NVW"/>
                                     <constraint firstItem="UtN-vG-MUB" firstAttribute="centerX" secondItem="Mur-iE-N7Z" secondAttribute="centerX" id="nEq-s4-x9h"/>
                                     <constraint firstAttribute="trailing" secondItem="Odx-z4-Smb" secondAttribute="trailing" constant="8" id="v40-AE-7je"/>
                                     <constraint firstItem="CCD-s8-uK6" firstAttribute="top" secondItem="Mur-iE-N7Z" secondAttribute="top" constant="52" id="yXd-mL-DvN"/>
@@ -151,6 +170,7 @@
                     </view>
                     <connections>
                         <outlet property="headerLabel" destination="KgO-z2-zwt" id="wmp-II-aN3"/>
+                        <outlet property="imageView" destination="m7i-K3-yqp" id="GkS-Rr-AiD"/>
                         <outlet property="instruction" destination="1mo-ae-caR" id="FTx-eJ-ecI"/>
                         <outlet property="opponentLabel" destination="Xnd-v1-JeB" id="sZP-Ry-IPl"/>
                         <outlet property="opponentProgress" destination="p8y-IC-uq2" id="ZVK-og-jvc"/>
@@ -161,7 +181,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vWS-sU-wcy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="24.800000000000001" y="39.90147783251232"/>
+            <point key="canvasLocation" x="24.637681159420293" y="39.130434782608695"/>
         </scene>
     </scenes>
     <resources>

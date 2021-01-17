@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3CE921544F618A0A5841165D /* Gifs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE920078E837C23299BF32F /* Gifs.swift */; };
 		3CE92C4D331CECDD5445DD43 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE92DBDCDF37EA4186348B8 /* Game.swift */; };
 		A111AE5225B3EDA500D35555 /* GameResultScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A111AE5125B3EDA500D35555 /* GameResultScreen.swift */; };
-		A111AE5D25B4322C00D35555 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = A111AE5C25B4322C00D35555 /* SwiftyJSON */; };
 		A17511AB25B2A14A0092AAA1 /* htnappuiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17511AA25B2A14A0092AAA1 /* htnappuiApp.swift */; };
 		A17511AD25B2A14A0092AAA1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17511AC25B2A14A0092AAA1 /* ContentView.swift */; };
 		A17511AF25B2A14B0092AAA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A17511AE25B2A14B0092AAA1 /* Assets.xcassets */; };
@@ -27,11 +27,17 @@
 		A17511ED25B33BD30092AAA1 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17511EC25B33BD30092AAA1 /* CircularProgressView.swift */; };
 		A17511F125B3811B0092AAA1 /* CustomVideoInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17511F025B3811B0092AAA1 /* CustomVideoInput.swift */; };
 		B14E1AA6CB1669F7D02FAA41 /* Pods_htnappui.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97C071C88EF122354F030CAF /* Pods_htnappui.framework */; };
-		B89C8F9E25B2E9DF0086304B /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = A17511D925B2C88A0092AAA1 /* Introspect */; };
+		B858C34025B4928000E38CBA /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = A17511D925B2C88A0092AAA1 /* Introspect */; };
+		B858C34125B4928000E38CBA /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = A111AE5C25B4322C00D35555 /* SwiftyJSON */; };
+		B858C34625B493C900E38CBA /* squats.gif in Resources */ = {isa = PBXBuildFile; fileRef = B858C34325B493C900E38CBA /* squats.gif */; };
+		B858C34725B493C900E38CBA /* lunges.gif in Resources */ = {isa = PBXBuildFile; fileRef = B858C34425B493C900E38CBA /* lunges.gif */; };
+		B858C34825B493C900E38CBA /* jumpingjacks.gif in Resources */ = {isa = PBXBuildFile; fileRef = B858C34525B493C900E38CBA /* jumpingjacks.gif */; };
+		B858C34B25B4942900E38CBA /* sports-and-rest.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B858C34A25B4942900E38CBA /* sports-and-rest.jpg */; };
 		B89C8FA125B2EDD70086304B /* GameController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B89C8FA025B2EDD70086304B /* GameController.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3CE920078E837C23299BF32F /* Gifs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gifs.swift; sourceTree = "<group>"; };
 		3CE92DBDCDF37EA4186348B8 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		505D28E871EE61EEB6EB4083 /* Pods-htnappui.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-htnappui.release.xcconfig"; path = "Target Support Files/Pods-htnappui/Pods-htnappui.release.xcconfig"; sourceTree = "<group>"; };
 		885DC846210E6C63360EA64C /* Pods-htnappui.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-htnappui.debug.xcconfig"; path = "Target Support Files/Pods-htnappui/Pods-htnappui.debug.xcconfig"; sourceTree = "<group>"; };
@@ -55,6 +61,10 @@
 		A17511E925B33AA90092AAA1 /* RoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
 		A17511EC25B33BD30092AAA1 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		A17511F025B3811B0092AAA1 /* CustomVideoInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomVideoInput.swift; sourceTree = "<group>"; };
+		B858C34325B493C900E38CBA /* squats.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = squats.gif; sourceTree = "<group>"; };
+		B858C34425B493C900E38CBA /* lunges.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = lunges.gif; sourceTree = "<group>"; };
+		B858C34525B493C900E38CBA /* jumpingjacks.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = jumpingjacks.gif; sourceTree = "<group>"; };
+		B858C34A25B4942900E38CBA /* sports-and-rest.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "sports-and-rest.jpg"; sourceTree = "<group>"; };
 		B89C8FA025B2EDD70086304B /* GameController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GameController.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -63,9 +73,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A111AE5D25B4322C00D35555 /* SwiftyJSON in Frameworks */,
-				B89C8F9E25B2E9DF0086304B /* Introspect in Frameworks */,
+				B858C34125B4928000E38CBA /* SwiftyJSON in Frameworks */,
 				B14E1AA6CB1669F7D02FAA41 /* Pods_htnappui.framework in Frameworks */,
+				B858C34025B4928000E38CBA /* Introspect in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,6 +120,10 @@
 		A17511A925B2A14A0092AAA1 /* htnappui */ = {
 			isa = PBXGroup;
 			children = (
+				B858C34525B493C900E38CBA /* jumpingjacks.gif */,
+				B858C34425B493C900E38CBA /* lunges.gif */,
+				B858C34325B493C900E38CBA /* squats.gif */,
+				B858C34A25B4942900E38CBA /* sports-and-rest.jpg */,
 				B89C8FA025B2EDD70086304B /* GameController.storyboard */,
 				A17511EC25B33BD30092AAA1 /* CircularProgressView.swift */,
 				A17511AA25B2A14A0092AAA1 /* htnappuiApp.swift */,
@@ -130,6 +144,7 @@
 				A17511B025B2A14B0092AAA1 /* Preview Content */,
 				3CE92DBDCDF37EA4186348B8 /* Game.swift */,
 				A17511F025B3811B0092AAA1 /* CustomVideoInput.swift */,
+				3CE920078E837C23299BF32F /* Gifs.swift */,
 			);
 			path = htnappui;
 			sourceTree = "<group>";
@@ -208,8 +223,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B858C34B25B4942900E38CBA /* sports-and-rest.jpg in Resources */,
 				A17511B225B2A14B0092AAA1 /* Preview Assets.xcassets in Resources */,
 				A17511AF25B2A14B0092AAA1 /* Assets.xcassets in Resources */,
+				B858C34825B493C900E38CBA /* jumpingjacks.gif in Resources */,
+				B858C34725B493C900E38CBA /* lunges.gif in Resources */,
+				B858C34625B493C900E38CBA /* squats.gif in Resources */,
 				B89C8FA125B2EDD70086304B /* GameController.storyboard in Resources */,
 				A17511DD25B2CFB80092AAA1 /* hawaii.mp3 in Resources */,
 			);
@@ -262,6 +281,7 @@
 				A17511BC25B2A2170092AAA1 /* Models.swift in Sources */,
 				A17511ED25B33BD30092AAA1 /* CircularProgressView.swift in Sources */,
 				3CE92C4D331CECDD5445DD43 /* Game.swift in Sources */,
+				3CE921544F618A0A5841165D /* Gifs.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,7 +412,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"htnappui/Preview Content\"";
-				DEVELOPMENT_TEAM = MX7F8VC2CH;
+				DEVELOPMENT_TEAM = ULF85QF8XX;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = htnappui/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -415,7 +435,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"htnappui/Preview Content\"";
-				DEVELOPMENT_TEAM = MX7F8VC2CH;
+				DEVELOPMENT_TEAM = ULF85QF8XX;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = htnappui/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;

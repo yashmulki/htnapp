@@ -46,11 +46,12 @@ class GameViewController : UIViewController {
     
     @IBOutlet var opponentProgress: UIProgressView!
     
+    @IBOutlet var imageView: UIImageView!
+    
     var popCallBack: () -> Void = {}
     
     var leftHandEmitter: CAEmitterLayer!
     var rightHandEmitter: CAEmitterLayer!
-    
     
     var leftHandNode = CGPoint()
     var rightHandNode = CGPoint()
@@ -98,15 +99,7 @@ class GameViewController : UIViewController {
             request.httpMethod = "POST"
             request.httpBody = try! JSONSerialization.data(withJSONObject: requestInfo)
 
-            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-                guard let data = data else { return }
-                guard let json = try? JSONSerialization.jsonObject(with: data) as? [String:Any] else { return }
-
-                let gameOver = json["game_over"] as? Bool
-                let winnerId = json["winner_id"] as? String
-
-                print("Game Over: \(gameOver), Winner: \(winnerId)")
-            }
+            let task = URLSession.shared.dataTask(with: request)
 
             task.resume()
         }
@@ -123,6 +116,7 @@ class GameViewController : UIViewController {
             finishedActivityParticles() //-> make this not trash first
             activitiesIndex += 1
             activitiesCompletedRepetition = 0
+            imageView.image = routine.steps[activitiesIndex].move.tutorial
         }
     }
     
@@ -137,6 +131,8 @@ class GameViewController : UIViewController {
                 evidence += 1
 
                 if evidence >= evidenceMinimum {
+                    imageView.image = move.tutorial
+
                     evidence = 0
                     state = .tryExercise
                     instruction.text = "Go!"
@@ -239,6 +235,8 @@ class GameViewController : UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+//        imageView.isHidden = true
 
         instruction.text = "Stand Up!"
 
