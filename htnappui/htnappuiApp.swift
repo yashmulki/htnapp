@@ -11,6 +11,7 @@ import SwiftUI
 struct htnappuiApp: App {
     var body: some Scene {
         WindowGroup {
+//            GameResultScreen(navigatedSuper: .constant(true), won: false)
             ContentView()
         }
     }

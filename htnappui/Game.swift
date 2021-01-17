@@ -25,8 +25,10 @@ struct VonageInfo {
 }
 
 class GameViewController : UIViewController {
+    
     @IBOutlet var preview: PreviewView!
     
+    var gameOverCallback: (Bool) -> Void = {won in}
     
     @IBAction func exitGame(_ sender: Any) {
         popCallBack()
@@ -92,8 +94,9 @@ class GameViewController : UIViewController {
                 // Move to next if available, or just end the game
                 if activitiesIndex == routine.steps.count - 1 {
                     // Go to the game end screen
+                    gameOverCallback(true)
                 } else {
-                    // finishedActivityParticles() -> make this not trash first
+                     finishedActivityParticles() //-> make this not trash first
                     activitiesIndex += 1
                     activitiesCompletedRepetition = 0
                 }
@@ -183,9 +186,6 @@ class GameViewController : UIViewController {
 
         guard let vonageInfo = vonageInfo else { return }
         connectToSession(sessionId: vonageInfo.sessionId, token: vonageInfo.token)
-        
-        
-        
     }
 
     func bodyPoseHandler(request: VNRequest, error: Error?) {
@@ -328,18 +328,24 @@ class GameViewController : UIViewController {
     // Obviously need to tune these
     func finishedActivityParticles() {
         let particleEmitter = CAEmitterLayer()
-        particleEmitter.emitterPosition = CGPoint(x: view.center.x, y: -96)
+        particleEmitter.emitterPosition = CGPoint(x: view.center.x, y: 0)
         particleEmitter.emitterShape = .line
         particleEmitter.emitterSize = CGSize(width: view.frame.size.width, height: 1)
-        let yellow = makeEmitterCell(color: UIColor.yellow)
+        var yellow = makeEmitterCell(color: UIColor.red)
+        yellow.emissionLongitude = CGFloat.pi
         particleEmitter.emitterCells = [yellow]
         view.layer.addSublayer(particleEmitter)
+        
+        _ = Timer.scheduledTimer(withTimeInterval: 2, repeats: false, block: { (timer) in
+            particleEmitter.removeFromSuperlayer()
+        })
+        
     }
 
     func makeEmitterCell(color: UIColor) -> CAEmitterCell {
         let cell = CAEmitterCell()
-        cell.birthRate = 20
-        cell.lifetime = 7.0
+        cell.birthRate = 10
+        cell.lifetime = 3
         cell.lifetimeRange = 0
         cell.color = color.cgColor
         cell.velocity = 200
@@ -463,6 +469,9 @@ extension GameViewController : OTSubscriberDelegate {
 struct GameController : UIViewControllerRepresentable {
     let vonageInfo: VonageInfo?
     @Binding var navigated: Bool
+    
+    @Binding var gameOver: Bool
+    @Binding var gameWon: Bool
 
     func makeUIViewController(context: UIViewControllerRepresentableContext<GameController>) -> GameViewController {
         // No passing????
@@ -473,6 +482,12 @@ struct GameController : UIViewControllerRepresentable {
         controller.vonageInfo = vonageInfo
         controller.popCallBack = {
             navigated = false
+        }
+        
+        controller.gameOverCallback = { won in
+            gameWon = won
+            gameOver = true
+            
         }
 
         return controller
@@ -485,8 +500,21 @@ struct GameController : UIViewControllerRepresentable {
 struct Game : View {
     let vonageInfo: VonageInfo?
     @Binding var navigated: Bool
-
+    @Binding var superNavigate: Bool
+    @State var gameOver: Bool = false
+    @State var won: Bool = false
+    
     var body: some View {
-        GameController(vonageInfo: vonageInfo, navigated: $navigated).edgesIgnoringSafeArea(.all).navigationBarHidden(true)
+        Group {
+            if gameOver {
+                if won {
+                    GameResultScreen(navigatedSuper: $superNavigate, won: true)
+                } else {
+                    GameResultScreen(navigatedSuper: $superNavigate, won: false)
+                }
+            } else {
+                GameController(vonageInfo: vonageInfo, navigated: $navigated, gameOver: $gameOver, gameWon: $won).edgesIgnoringSafeArea(.all).navigationBarHidden(true)
+            }
+        }
     }
 }

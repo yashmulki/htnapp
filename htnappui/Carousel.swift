@@ -172,7 +172,7 @@ struct Item<Content: View>: View {
     var body: some View {
         VStack {
            NavigationLink(
-            destination: GameSetup(routine: routines[index]),
+            destination: GameSetup(routine: routines[index], superNavigate: $navigate),
             isActive: $navigate,
             label: {
                 EmptyView()

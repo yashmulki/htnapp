@@ -120,7 +120,7 @@ struct JumpingJack: Move {
             let angle = angleBetween(lw!.location, le!.location)
             print("Left Jack Hand Angle: \(angle)")
 
-            if angle > CGFloat.pi/3 || lw!.location.y < le!.location.y {
+            if angle > CGFloat.pi/3 || lw!.location.y > le!.location.y {
                 return false
             }
         } else {
@@ -131,7 +131,7 @@ struct JumpingJack: Move {
             let angle = angleBetween(rw!.location, re!.location)
             print("Right Jack Hand Angle: \(angle)")
 
-            if angle > CGFloat.pi/3 || rw!.location.y < re!.location.y {
+            if angle > CGFloat.pi/3 || rw!.location.y > re!.location.y {
                 return false
             }
         } else {
@@ -156,7 +156,7 @@ var routine1 = Routine(
     coverImage: Image("exercise1"),
     steps: [
         RoutineStep(repetitions: 5, move: JumpingJack()),
-        RoutineStep(repetitions: 5, move: Squats()),
+        
         
     ]
 )

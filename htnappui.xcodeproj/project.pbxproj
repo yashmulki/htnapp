@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3CE92C4D331CECDD5445DD43 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE92DBDCDF37EA4186348B8 /* Game.swift */; };
+		A111AE5225B3EDA500D35555 /* GameResultScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A111AE5125B3EDA500D35555 /* GameResultScreen.swift */; };
 		A17511AB25B2A14A0092AAA1 /* htnappuiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17511AA25B2A14A0092AAA1 /* htnappuiApp.swift */; };
 		A17511AD25B2A14A0092AAA1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17511AC25B2A14A0092AAA1 /* ContentView.swift */; };
 		A17511AF25B2A14B0092AAA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A17511AE25B2A14B0092AAA1 /* Assets.xcassets */; };
@@ -34,6 +35,7 @@
 		505D28E871EE61EEB6EB4083 /* Pods-htnappui.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-htnappui.release.xcconfig"; path = "Target Support Files/Pods-htnappui/Pods-htnappui.release.xcconfig"; sourceTree = "<group>"; };
 		885DC846210E6C63360EA64C /* Pods-htnappui.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-htnappui.debug.xcconfig"; path = "Target Support Files/Pods-htnappui/Pods-htnappui.debug.xcconfig"; sourceTree = "<group>"; };
 		97C071C88EF122354F030CAF /* Pods_htnappui.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_htnappui.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A111AE5125B3EDA500D35555 /* GameResultScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultScreen.swift; sourceTree = "<group>"; };
 		A17511A725B2A14A0092AAA1 /* htnappui.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = htnappui.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A17511AA25B2A14A0092AAA1 /* htnappuiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = htnappuiApp.swift; sourceTree = "<group>"; };
 		A17511AC25B2A14A0092AAA1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				A17511C025B2A4910092AAA1 /* HomeScreen.swift */,
 				A17511D225B2B9C30092AAA1 /* Leaderboards.swift */,
 				A17511CC25B2B89F0092AAA1 /* Profile.swift */,
+				A111AE5125B3EDA500D35555 /* GameResultScreen.swift */,
 				A17511C625B2A5660092AAA1 /* Carousel.swift */,
 				A17511DC25B2CFB80092AAA1 /* hawaii.mp3 */,
 				A17511C325B2A4A00092AAA1 /* SharedState.swift */,
@@ -243,6 +246,7 @@
 				A17511C125B2A4910092AAA1 /* HomeScreen.swift in Sources */,
 				A17511CD25B2B89F0092AAA1 /* Profile.swift in Sources */,
 				A17511AD25B2A14A0092AAA1 /* ContentView.swift in Sources */,
+				A111AE5225B3EDA500D35555 /* GameResultScreen.swift in Sources */,
 				A17511D325B2B9C30092AAA1 /* Leaderboards.swift in Sources */,
 				A17511AB25B2A14A0092AAA1 /* htnappuiApp.swift in Sources */,
 				A17511D625B2BA220092AAA1 /* GameSetup.swift in Sources */,
