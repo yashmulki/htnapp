@@ -28,9 +28,9 @@ extension AVCaptureSession.Preset {
     func dimensionForCapturePreset() -> (width: UInt32, height: UInt32) {
         switch self {
         case AVCaptureSession.Preset.cif352x288: return (352, 288)
-        case AVCaptureSession.Preset.vga640x480, AVCaptureSession.Preset.high: return (640, 480)
         case AVCaptureSession.Preset.low: return (192, 144)
         case AVCaptureSession.Preset.medium: return (480, 360)
+        case AVCaptureSession.Preset.high, AVCaptureSession.Preset.vga640x480: return (640, 480)
         case AVCaptureSession.Preset.hd1280x720: return (1280, 720)
         default: return (352, 288)
         }
@@ -199,8 +199,7 @@ class ExampleVideoCapture: NSObject, OTVideoCapture {
         videoInput = nil
         
         NotificationCenter.default.removeObserver(self,
-                                                  name: UIDevice.orientationDidChangeNotification,
-                                                  object: nil)
+            name: UIDevice.orientationDidChangeNotification, object: nil)
     }
     
     func isCaptureStarted() -> Bool {

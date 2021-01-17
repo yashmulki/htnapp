@@ -153,7 +153,7 @@ class GameViewController : UIViewController {
         captureSession.addOutput(videoOutput)
         captureSession.usesApplicationAudioSession = false
 
-        captureSession.connections.first!.videoOrientation = .portraitUpsideDown
+//        captureSession.connections.first!.videoOrientation = .portraitUpsideDown
         captureSession.commitConfiguration()
 
         if vonageInfo == nil {
@@ -187,6 +187,16 @@ class GameViewController : UIViewController {
 
         guard let vonageInfo = vonageInfo else { return }
         connectToSession(sessionId: vonageInfo.sessionId, token: vonageInfo.token)
+    }
+
+    func normalize(_ point: VNRecognizedPoint?) -> CGPoint {
+        guard let point = point else { return CGPoint() }
+
+        let width = Int(preview?.frame.width ?? 100)
+        let height = Int(preview?.frame.height ?? 100)
+
+        return VNImagePointForNormalizedPoint(
+            CGPoint(x: point.location.x, y: 1 - point.location.y), width, height)
     }
 
     func bodyPoseHandler(request: VNRequest, error: Error?) {
@@ -226,20 +236,20 @@ class GameViewController : UIViewController {
                 }
 
                 // Translate the point from normalized-coordinates to image coordinates.
-                return VNImagePointForNormalizedPoint(point.location,
-                    Int(preview?.frame.width ?? 100), Int(preview?.frame.height ?? 100))
+                return normalize(point)
             }
 
             DispatchQueue.main.async { [self] in
-                
-                self.rightHandNode =  VNImagePointForNormalizedPoint(recognizedPoints[.bodyLandmarkKeyRightWrist]?.location ?? CGPoint(), Int(preview?.frame.width ?? 100), Int(preview?.frame.height ?? 100))
+                let width = Int(preview?.frame.width ?? 100)
+                let height = Int(preview?.frame.height ?? 100)
 
-                self.leftHandNode = VNImagePointForNormalizedPoint(recognizedPoints[.bodyLandmarkKeyLeftWrist]?.location ?? CGPoint(), Int(preview?.frame.width ?? 100), Int(preview?.frame.height ?? 100))
+                rightHandNode = normalize(recognizedPoints[.bodyLandmarkKeyRightWrist])
+                leftHandNode = normalize(recognizedPoints[.bodyLandmarkKeyLeftWrist])
 
-                self.moveHandParticles()
+                moveHandParticles()
                 
-                self.drawPoints(imagePoints: imagePoints)
-                self.drawLines(recognizedPoints: recognizedPoints)
+                drawPoints(imagePoints: imagePoints)
+                drawLines(recognizedPoints: recognizedPoints)
             }
         }
     }
@@ -249,8 +259,8 @@ class GameViewController : UIViewController {
         let height = Int(preview?.frame.height ?? 100)
 
         if let a = a, a.confidence > 0, let b = b, b.confidence > 0 {
-            let aPoint = VNImagePointForNormalizedPoint(a.location, width, height)
-            let bPoint = VNImagePointForNormalizedPoint(b.location, width, height)
+            let aPoint = normalize(a)
+            let bPoint = normalize(b)
             self.drawLine(onLayer: preview.layer, fromPoint: aPoint, toPoint: bPoint)
         }
     }
@@ -367,8 +377,7 @@ extension GameViewController : AVCaptureVideoDataOutputSampleBufferDelegate {
     public func captureOutput(_ output: AVCaptureOutput,
                               didOutput sampleBuffer: CMSampleBuffer,
                               from connection: AVCaptureConnection) {
-        let requestHandler = VNImageRequestHandler(cmSampleBuffer: sampleBuffer)
-        
+        let requestHandler = VNImageRequestHandler(cmSampleBuffer: sampleBuffer, orientation: .right, options: [:])
         let request = VNDetectHumanBodyPoseRequest(completionHandler: bodyPoseHandler)
 
         do {
@@ -434,8 +443,7 @@ extension GameViewController : OTSessionDelegate {
         guard let subscriberView = subscriber.view else {
             return
         }
-        /// TAYLOR PLZ LOOK AT THIS
-        let screenBounds = UIScreen.main.bounds
+        /// TAYLOR PLZ LOOK AT THIS its good idk
         subscriberView.frame = CGRect(
             x: 0,
             y: 0,

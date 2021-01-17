@@ -47,6 +47,8 @@ func angleBetween(_ point1: CGPoint, _ point2: CGPoint) -> CGFloat {
     return atan2(abs(point1.x-point2.x), abs(point1.y-point2.y))
 }
 
+func flipY(_ p: CGPoint) -> CGPoint { CGPoint(x: p.x, y: 1 - p.y) }
+
 struct Squats: Move {
     var name: String = "Squats"
     
@@ -57,7 +59,7 @@ struct Squats: Move {
         let rk = recognizedPoints[.bodyLandmarkKeyRightKnee]
 
         if lh != nil && lk != nil && lh!.confidence > 0 && lk!.confidence > 0 {
-            let angle = angleBetween(lh!.location, lk!.location)
+            let angle = angleBetween(flipY(lh!.location), flipY(lk!.location))
             print("Left Squat Angle: \(angle)")
 
             if angle > 1 {
@@ -66,7 +68,7 @@ struct Squats: Move {
         }
 
         if rh != nil && rk != nil && rh!.confidence > 0 && rk!.confidence > 0  {
-            let angle = angleBetween(rh!.location, rk!.location)
+            let angle = angleBetween(flipY(rh!.location), flipY(rk!.location))
             print("Right Squat Angle: \(angle)")
 
             if angle > 1 {
@@ -117,10 +119,10 @@ struct JumpingJack: Move {
 
         
         if lw != nil && le != nil && lw!.confidence > 0 && le!.confidence > 0  {
-            let angle = angleBetween(lw!.location, le!.location)
+            let angle = angleBetween(flipY(lw!.location), flipY(le!.location))
             print("Left Jack Hand Angle: \(angle)")
 
-            if angle > CGFloat.pi/3 || lw!.location.y > le!.location.y {
+            if angle > CGFloat.pi/3 || flipY(lw!.location).y > flipY(le!.location).y {
                 return false
             }
         } else {
@@ -128,10 +130,10 @@ struct JumpingJack: Move {
         }
         
         if rw != nil && re != nil && rw!.confidence > 0 && re!.confidence > 0  {
-            let angle = angleBetween(rw!.location, re!.location)
+            let angle = angleBetween(flipY(rw!.location), flipY(re!.location))
             print("Right Jack Hand Angle: \(angle)")
 
-            if angle > CGFloat.pi/3 || rw!.location.y > re!.location.y {
+            if angle > CGFloat.pi/3 || flipY(rw!.location).y > flipY(re!.location).y {
                 return false
             }
         } else {
