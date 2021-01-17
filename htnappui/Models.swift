@@ -43,17 +43,38 @@ struct Routine {
 }
 
 
-func angleBetween(point1: CGPoint, point2: CGPoint) -> CGFloat {
+func angleBetween(_ point1: CGPoint, _ point2: CGPoint) -> CGFloat {
     return atan2(abs(point1.x-point2.x), abs(point1.y-point2.y))
 }
 
-struct JumpingJack: Move {
-    
-    var name: String = "Jumping Jack"
+struct Squats: Move {
+    var name: String = "Squats"
     
     func checkActive(recognizedPoints: [VNRecognizedPointKey: VNRecognizedPoint]) -> Bool {
-        // This is where you check the angles and stuff
-        return true
+        let lh = recognizedPoints[.bodyLandmarkKeyLeftHip]
+        let lk = recognizedPoints[.bodyLandmarkKeyLeftKnee]
+        let rh = recognizedPoints[.bodyLandmarkKeyRightHip]
+        let rk = recognizedPoints[.bodyLandmarkKeyRightKnee]
+
+        if lh != nil && lk != nil && lh!.confidence > 0 && lk!.confidence > 0 {
+            let angle = angleBetween(lh!.location, lk!.location)
+            print("Left Squat Angle: \(angle)")
+
+            if angle > 1 {
+                return true
+            }
+        }
+
+        if rh != nil && rk != nil && rh!.confidence > 0 && rk!.confidence > 0  {
+            let angle = angleBetween(rh!.location, rk!.location)
+            print("Right Squat Angle: \(angle)")
+
+            if angle > 1 {
+                return true
+            }
+        }
+
+        return false
     }
 
 }
@@ -62,6 +83,16 @@ struct Person {
     var name: String
 }
 
-var routine1 = Routine(name: "Daily Challenge", type: .exercise, difficulty: .medium, associatedSong: Song(name: "Hawaii", artist: "The Beach Boys", resourcePath: "hawaii"), length: 15, coverImage: Image("exercise1"), steps: [])
+var routine1 = Routine(
+    name: "Daily Challenge",
+    type: .exercise,
+    difficulty: .medium,
+    associatedSong: Song(name: "Hawaii", artist: "The Beach Boys", resourcePath: "hawaii"),
+    length: 15,
+    coverImage: Image("exercise1"),
+    steps: [
+        RoutineStep(repetitions: 5, move: Squats())
+    ]
+)
 
 var routines = [routine1, routine1,routine1,routine1,routine1,routine1]
