@@ -80,19 +80,35 @@ struct Squats: Move {
 
         return false
     }
-
 }
 
-struct JumpingJack: Move {
+struct Lunges : Move {
+    var name: String = "Jumping Jacks"
+    var evidenceMinimum: Int = 5
+
+    func checkActive(recognizedPoints: [VNRecognizedPointKey: VNRecognizedPoint]) -> Bool {
+        let lw = recognizedPoints[.bodyLandmarkKeyLeftWrist]
+        let le = recognizedPoints[.bodyLandmarkKeyLeftElbow]
+        let rw = recognizedPoints[.bodyLandmarkKeyRightWrist]
+        let re = recognizedPoints[.bodyLandmarkKeyRightElbow]
+
+        if lw != nil && le != nil && lw!.confidence > 0 && le!.confidence > 0 {
+            print("Lunge Left: \(angleBetween(flip(lw!.location), flip(le!.location)))")
+        }
+
+        if rw != nil && re != nil && rw!.confidence > 0 && re!.confidence > 0 {
+            print("Lunge Left: \(angleBetween(flip(rw!.location), flip(re!.location)))")
+        }
+
+        return false
+    }
+}
+
+struct JumpingJack : Move {
     var name: String = "Jumping Jacks"
     var evidenceMinimum: Int = 1
     
     func checkActive(recognizedPoints: [VNRecognizedPointKey: VNRecognizedPoint]) -> Bool {
-        let lh = recognizedPoints[.bodyLandmarkKeyLeftHip]
-        let la = recognizedPoints[.bodyLandmarkKeyLeftAnkle]
-        let rh = recognizedPoints[.bodyLandmarkKeyRightHip]
-        let ra = recognizedPoints[.bodyLandmarkKeyRightAnkle]
-
         let lw = recognizedPoints[.bodyLandmarkKeyLeftWrist]
         let le = recognizedPoints[.bodyLandmarkKeyLeftElbow]
         let rw = recognizedPoints[.bodyLandmarkKeyRightWrist]
@@ -121,7 +137,7 @@ struct JumpingJack: Move {
 //        }
 
         
-        if lw != nil && le != nil && lw!.confidence > 0 && le!.confidence > 0  {
+        if lw != nil && le != nil && lw!.confidence > 0 && le!.confidence > 0 {
             let angle = angleBetween(flip(lw!.location), flip(le!.location))
             print("Left Jack Hand Angle: \(angle)")
 
@@ -160,8 +176,9 @@ var routine1 = Routine(
     length: 15,
     coverImage: Image("exercise1"),
     steps: [
-        RoutineStep(repetitions: 10, move: JumpingJack()),
-        RoutineStep(repetitions: 10, move: Squats())
+        RoutineStep(repetitions: 4, move: Squats()),
+//        RoutineStep(repetitions: 5, move: Lunges()),
+        RoutineStep(repetitions: 8, move: JumpingJack()),
     ]
 )
 

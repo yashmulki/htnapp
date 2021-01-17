@@ -25,7 +25,6 @@ struct VonageInfo {
 }
 
 class GameViewController : UIViewController {
-    
     @IBOutlet var preview: PreviewView!
     
     var gameOverCallback: (Bool) -> Void = {won in}
@@ -87,6 +86,41 @@ class GameViewController : UIViewController {
     var evidence = 0
 
     let evidenceMinimum = 2
+    let returnEvidenceMinimum = 1
+
+    func finishSet() {
+        if !roomId.isEmpty {
+            let requestInfo: [String: Any] = ["user_id": UIDevice.current.name, "room_id": roomId]
+
+            let url = URL(string: "\(api)/rooms/update")!
+            var request = URLRequest(url: url)
+
+            request.httpMethod = "POST"
+            request.httpBody = try! JSONSerialization.data(withJSONObject: requestInfo)
+
+            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                guard let data = data else { return }
+                guard let json = try? JSONSerialization.jsonObject(with: data) as? [String:Any] else { return }
+
+                let gameOver = json["game_over"] as? Bool
+                let winnerId = json["winner_id"] as? String
+
+                print("Game Over: \(gameOver), Winner: \(winnerId)")
+            }
+
+            task.resume()
+        }
+
+        // Move to next if available, or just end the game
+        if activitiesIndex == routine.steps.count - 1 {
+            // Go to the game end screen
+            gameOverCallback(true)
+        } else {
+            finishedActivityParticles() //-> make this not trash first
+            activitiesIndex += 1
+            activitiesCompletedRepetition = 0
+        }
+    }
     
     func checkIfExercise(recognizedPoints: [VNRecognizedPointKey:VNRecognizedPoint]) {
         DispatchQueue.main.async { [self] in
@@ -98,7 +132,7 @@ class GameViewController : UIViewController {
             case .findUser:
                 evidence += 1
 
-                if evidence > evidenceMinimum {
+                if evidence >= evidenceMinimum {
                     evidence = 0
                     state = .tryExercise
                     instruction.text = "Go!"
@@ -112,7 +146,7 @@ class GameViewController : UIViewController {
                         instruction.text = "Hold!"
                     }
 
-                    if evidence > move.evidenceMinimum {
+                    if evidence >= move.evidenceMinimum {
                         evidence = 0
                         state = .goBack
                         instruction.text = "Return!"
@@ -123,7 +157,7 @@ class GameViewController : UIViewController {
                 if !isActive {
                     evidence += 1
 
-                    if evidence > move.evidenceMinimum {
+                    if evidence >= returnEvidenceMinimum {
                         activitiesCompletedRepetition += 1
                         evidence = 0
                         state = .tryExercise
@@ -133,15 +167,8 @@ class GameViewController : UIViewController {
             }
 
             if activitiesCompletedRepetition >= routine.steps[activitiesIndex].repetitions {
-                // Move to next if available, or just end the game
-                if activitiesIndex == routine.steps.count - 1 {
-                    // Go to the game end screen
-                    gameOverCallback(true)
-                } else {
-                     finishedActivityParticles() //-> make this not trash first
-                    activitiesIndex += 1
-                    activitiesCompletedRepetition = 0
-                }
+                finishSet()
+                activitiesCompletedRepetition = 0
             }
 
             headerLabel.text = "\(routine.steps[activitiesIndex].move.name)   \(activitiesCompletedRepetition)/\(routine.steps[activitiesIndex].repetitions)"
@@ -153,6 +180,7 @@ class GameViewController : UIViewController {
 
     // Swift gods please forgive me.
     var vonageInfo: VonageInfo?
+    var roomId = ""
 
     func connectToSession(sessionId: String, token: String) {
         session = OTSession(apiKey: apiKey, sessionId: sessionId, delegate: self)
@@ -520,6 +548,7 @@ extension GameViewController : OTSubscriberDelegate {
 
 struct GameController : UIViewControllerRepresentable {
     let vonageInfo: VonageInfo?
+    let roomId: String
     @Binding var navigated: Bool
     
     @Binding var gameOver: Bool
@@ -532,6 +561,7 @@ struct GameController : UIViewControllerRepresentable {
 
         // This will have to do if I want connect method to run during viewDidLoad I suppose.
         controller.vonageInfo = vonageInfo
+        controller.roomId = roomId
         controller.popCallBack = {
             navigated = false
         }
@@ -551,6 +581,7 @@ struct GameController : UIViewControllerRepresentable {
 
 struct Game : View {
     let vonageInfo: VonageInfo?
+    let roomId: String
     @Binding var navigated: Bool
     @Binding var superNavigate: Bool
     @State var gameOver: Bool = false
@@ -565,7 +596,13 @@ struct Game : View {
                     GameResultScreen(navigatedSuper: $superNavigate, won: false)
                 }
             } else {
-                GameController(vonageInfo: vonageInfo, navigated: $navigated, gameOver: $gameOver, gameWon: $won).edgesIgnoringSafeArea(.all).navigationBarHidden(true)
+                GameController(
+                    vonageInfo: vonageInfo,
+                    roomId: roomId,
+                    navigated: $navigated,
+                    gameOver: $gameOver,
+                    gameWon: $won
+                ).edgesIgnoringSafeArea(.all).navigationBarHidden(true)
             }
         }
     }
