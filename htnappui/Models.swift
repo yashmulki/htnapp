@@ -92,7 +92,7 @@ struct JumpingJack: Move {
         let le = recognizedPoints[.bodyLandmarkKeyLeftElbow]
         let rw = recognizedPoints[.bodyLandmarkKeyRightWrist]
         let re = recognizedPoints[.bodyLandmarkKeyRightElbow]
-                
+
 //        if lh != nil && la != nil && lh!.confidence > 0 && la!.confidence > 0 {
 //            let angle = angleBetween(lh!.location, la!.location)
 //            print("Left Jack Angle: \(angle)")

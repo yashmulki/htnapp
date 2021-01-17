@@ -73,38 +73,16 @@ struct GameSetup: View {
                                 guard let json = try? JSONSerialization.jsonObject(
                                     with: data, options: []) as? [String: Any] else { return }
                                 guard let roomId = json["room_id"] as? String else { return }
+                                guard let sessionId = json["session_id"] as? String else { return }
+                                guard let token = json["token"] as? String else { return }
 
-                                let url = URL(string: "\(api)/rooms/join")!
+                                roomCode = roomId
 
-                                let requestParams: [String:Any] = [
-                                    "room_id": roomId,
-                                    "user_id": UIDevice.current.name
-                                ]
-                                guard let requestData =
-                                    try? JSONSerialization.data(withJSONObject: requestParams) else { return }
+                                // I feel paralyzed to move this crazy action call out of the function.
+                                vonageInfo.sessionId = sessionId
+                                vonageInfo.token = token
 
-                                var request = URLRequest(url: url)
-                                request.httpMethod = "POST"
-                                request.httpBody = requestData
-                                
-                                let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-                                    guard let data = data else { return }
-
-                                    guard let json = try? JSONSerialization.jsonObject(
-                                        with: data, options: []) as? [String: Any] else { return }
-                                    guard let sessionId = json["session_id"] as? String else { return }
-                                    guard let token = json["token"] as? String else { return }
-
-                                    roomCode = roomId
-
-                                    // I feel paralyzed to move this crazy action call out of the function.
-                                    vonageInfo.sessionId = sessionId
-                                    vonageInfo.token = token
-                                    
-                                    print(sessionId)
-                                }
-                                
-                                task.resume()
+                                print(sessionId)
                             }
 
                             task.resume()
