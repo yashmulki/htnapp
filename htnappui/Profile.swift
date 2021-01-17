@@ -104,11 +104,17 @@ struct VideoRow: View {
     let link: String
     
     var body: some View {
-        HStack {
+        VStack {
             VideoPlayer(player: AVPlayer(url: URL(string: link)!))
                 .frame( height: height)
                 .cornerRadius(25)
                 .padding(8)
+            HStack {
+                Spacer()
+                Button(action:{}, label: {
+                    Text("Share to Instagram")
+                }).padding(.trailing, 20)
+            }
         }
     }
 }
