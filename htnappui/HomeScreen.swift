@@ -26,9 +26,17 @@ struct HomeScreen: View {
                     }.font(.system(size: 15, weight: .light, design: .default)).padding(.top, 10)
                     
                     HStack {
-                        ForEach(0..<routines[state.activeCard].difficulty.rawValue + 1) {_ in
                             Image(systemName: "star.fill")
+                        if routines[state.activeCard].difficulty.rawValue >= 1 {
+                            Image(systemName: "star.fill")
+
                         }
+                        
+                        if routines[state.activeCard].difficulty.rawValue >= 2 {
+                            Image(systemName: "star.fill")
+
+                        }
+                        
                     }.padding(.top, 30)
                     
                     SnapCarousel().padding(.top, 40)

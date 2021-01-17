@@ -9,7 +9,7 @@ import SwiftUI
 import Vision
 
 enum RoutineDifficulty: Int {
-    case easy, medium, hard
+    case easy = 0, medium = 1, hard = 2
 }
 
 enum RoutineType: Int {
@@ -165,4 +165,30 @@ var routine1 = Routine(
     ]
 )
 
-var routines = [routine1, routine1,routine1,routine1,routine1,routine1]
+var routine2 = Routine(
+    name: "Morning Workout",
+    type: .exercise,
+    difficulty: .easy,
+    associatedSong: Song(name: "Here Comes the Sun", artist: "The Beatles", resourcePath: "hawaii"),
+    length: 5,
+    coverImage: Image("morning"),
+    steps: [
+        RoutineStep(repetitions: 10, move: JumpingJack()),
+        RoutineStep(repetitions: 10, move: Squats())
+    ]
+)
+
+var routine3 = Routine(
+    name: "Extreme Exercise",
+    type: .exercise,
+    difficulty: .hard,
+    associatedSong: Song(name: "Take on Me", artist: "A-ha", resourcePath: "hawaii"),
+    length: 30,
+    coverImage: Image("xtreme"),
+    steps: [
+        RoutineStep(repetitions: 10, move: JumpingJack()),
+        RoutineStep(repetitions: 10, move: Squats())
+    ]
+)
+
+var routines = [routine1, routine2, routine3]

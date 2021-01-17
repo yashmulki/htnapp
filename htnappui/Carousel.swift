@@ -19,7 +19,6 @@ struct SnapCarousel: View {
             Card(id: 0, name: "Hey"),
             Card(id: 1, name: "Ho"),
             Card(id: 2, name: "Lets"),
-            Card(id: 3, name: "Go")
         ]
     
         
@@ -38,7 +37,7 @@ struct SnapCarousel: View {
                         widthOfHiddenCards: widthOfHiddenCards,
                         cardHeight: cardHeight, index: i
                     ) {
-                        routines[i].coverImage.resizable()
+                        routines[i].coverImage.resizable().aspectRatio(contentMode: .fill)
                     }
                     
                     .offset(x: 0, y: i == UIState.activeCard ? -50 : 0)

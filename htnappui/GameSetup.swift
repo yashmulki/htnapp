@@ -176,50 +176,45 @@ struct GameSetup: View {
                     VStack {
                         HStack {
                             VStack {
-                                Image("mypfp").resizable().frame(width: 75, height: 75).clipShape(Circle()).padding(.bottom, 10)
+                                Image("aadi").resizable().frame(width: 75, height: 75).clipShape(Circle()).padding(.bottom, 10)
                                 Text("Adi")
                             }.onTapGesture {
-                                friend = Person(name: "John")
+                                friend = Person(name: "Adi")
                                 withAnimation {
                                     friendChosen = true
                                 }
                             }
                             Spacer()
                             VStack {
-                                Image("mypfp").resizable().frame(width: 75, height: 75).clipShape(Circle()).padding(.bottom, 10)
+                                Image("taylor").resizable().frame(width: 75, height: 75).clipShape(Circle()).padding(.bottom, 10)
                                 Text("Taylor")
                             }
                             Spacer()
                             VStack {
-                                Image("mypfp").resizable().frame(width: 75, height: 75).clipShape(Circle()).padding(.bottom, 10)
+                                Image("fred").resizable().frame(width: 75, height: 75).clipShape(Circle()).padding(.bottom, 10)
                                 Text("Fred")
                             }
                         }
                         HStack {
                             VStack {
-                                Image("mypfp").resizable().frame(width: 75, height: 75).clipShape(Circle()).padding(.bottom, 5)
-                                Text("John")
-                            }.onTapGesture {
-                                friend = Person(name: "John")
-                                withAnimation {
-                                    friendChosen = true
-                                }
+                                Image("person5").resizable().frame(width: 75, height: 75).clipShape(Circle()).padding(.bottom, 10)
+                                Text("Sam")
                             }
                             Spacer()
                             VStack {
-                                Image("mypfp").resizable().frame(width: 75, height: 75).clipShape(Circle()).padding(.bottom, 10)
+                                Image("person3").resizable().frame(width: 75, height: 75).clipShape(Circle()).padding(.bottom, 10)
                                 Text("John")
                             }
                             Spacer()
                             VStack {
-                                Image("mypfp").resizable().frame(width: 75, height: 75).clipShape(Circle()).padding(.bottom, 10)
-                                Text("John")
+                                Image("person2").resizable().frame(width: 75, height: 75).clipShape(Circle()).padding(.bottom, 10)
+                                Text("Jane")
                             }
                         }
                         HStack {
                             VStack {
-                                Image("mypfp").resizable().frame(width: 75, height: 75).clipShape(Circle()).padding(.bottom, 10)
-                                Text("John")
+                                Image("person4").resizable().frame(width: 75, height: 75).clipShape(Circle()).padding(.bottom, 10)
+                                Text("Paul")
                             }.onTapGesture {
                                 friend = Person(name: "John")
                                 withAnimation {
@@ -228,14 +223,11 @@ struct GameSetup: View {
                             }
                             Spacer()
                             VStack {
-                                Image("mypfp").resizable().frame(width: 75, height: 75).clipShape(Circle()).padding(.bottom, 10)
-                                Text("John")
+                                Image("person6").resizable().frame(width: 75, height: 75).clipShape(Circle()).padding(.bottom, 10)
+                                Text("Jake")
                             }
                             Spacer()
-                            VStack {
-                                Image("mypfp").resizable().frame(width: 75, height: 75).clipShape(Circle()).padding(.bottom, 10)
-                                Text("John")
-                            }
+                            
                         }
                     }.padding([.leading, .trailing], 20)
                     
@@ -256,7 +248,7 @@ struct GameSetup: View {
                         )
                   
                 }
-            ).padding(.vertical, 20)
+            ).padding(.vertical, 40).background(Color.black)
             
         }.edgesIgnoringSafeArea(.all).navigationBarTitle(Text("Game Setup"), displayMode: .inline).introspectTabBarController { (UITabBarController) in
             UITabBarController.tabBar.isHidden = true

@@ -11,13 +11,13 @@ struct Leaderboards: View {
     var body: some View {
         NavigationView{
             ScrollView{
-                LeaderBoardRow(image: Image("mypfp"), name: "Adi Chaudhry", xp: 10052, max: 10052, index: 1)
-                LeaderBoardRow(image: Image("mypfp"), name: "Fred Gao",xp: 8402,max: 10052, index: 2 )
-                LeaderBoardRow(image: Image("mypfp"), name: "yash monke",xp: 7400, max: 10052, index: 3 )
-                LeaderBoardRow(image: Image("mypfp"), name: "barack obunga",xp: 5102, max: 10052, index: 4 )
-                LeaderBoardRow(image: Image("mypfp"), name: "pog champ",xp: 4202, max: 10052, index: 5 )
-                LeaderBoardRow(image: Image("mypfp"), name: "Taylor Whatley", xp: 3984, max: 10052, index: 6 )
-                LeaderBoardRow(image: Image("mypfp"), name: "Fred Xi",xp: 2498, max: 10052, index: 7 )
+                LeaderBoardRow(image: Image("aadi"), name: "Adi Chaudhry", xp: 10052, max: 10052, index: 1)
+                LeaderBoardRow(image: Image("fred"), name: "Fred Gao",xp: 8402,max: 10052, index: 2 )
+                LeaderBoardRow(image: Image("mypfp"), name: " Me",xp: 7400, max: 10052, index: 3 )
+                LeaderBoardRow(image: Image("taylor"), name: "Taylor Whatley",xp: 5102, max: 10052, index: 4 )
+                LeaderBoardRow(image: Image("person5"), name: "John Appleseed",xp: 4202, max: 10052, index: 5 )
+                LeaderBoardRow(image: Image("person2"), name: "Jane Appleseed", xp: 3984, max: 10052, index: 6 )
+                LeaderBoardRow(image: Image("person3"), name: "Jack Smith",xp: 2498, max: 10052, index: 7 )
             }.navigationBarTitle(Text("LeaderBoards"))
         }
     }

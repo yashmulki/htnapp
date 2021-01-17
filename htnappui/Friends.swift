@@ -11,9 +11,9 @@ struct Friends: View {
     var body: some View {
         NavigationView {
             ScrollView{
-                FriendRow(image: Image("mypfp"), name: "Adi Chaudhry", activity: "Online", xp: 2532)
-                FriendRow(image: Image("mypfp"), name: "Taylor Whatley", activity: "15m", xp: 9952)
-                FriendRow(image: Image("mypfp"), name: "Fred Gao", activity: "1h", xp: 10342)
+                FriendRow(image: Image("aadi"), name: "Adi Chaudhry", activity: "Online", xp: 2532)
+                FriendRow(image: Image("taylor"), name: "Taylor Whatley", activity: "15m", xp: 9952)
+                FriendRow(image: Image("fred"), name: "Fred Gao", activity: "1h", xp: 10342)
             }.navigationBarTitle(Text("Friends"))
         }
     }

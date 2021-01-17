@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3CE92C4D331CECDD5445DD43 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE92DBDCDF37EA4186348B8 /* Game.swift */; };
 		A111AE5225B3EDA500D35555 /* GameResultScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A111AE5125B3EDA500D35555 /* GameResultScreen.swift */; };
+		A111AE5D25B4322C00D35555 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = A111AE5C25B4322C00D35555 /* SwiftyJSON */; };
 		A17511AB25B2A14A0092AAA1 /* htnappuiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17511AA25B2A14A0092AAA1 /* htnappuiApp.swift */; };
 		A17511AD25B2A14A0092AAA1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17511AC25B2A14A0092AAA1 /* ContentView.swift */; };
 		A17511AF25B2A14B0092AAA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A17511AE25B2A14B0092AAA1 /* Assets.xcassets */; };
@@ -62,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A111AE5D25B4322C00D35555 /* SwiftyJSON in Frameworks */,
 				B89C8F9E25B2E9DF0086304B /* Introspect in Frameworks */,
 				B14E1AA6CB1669F7D02FAA41 /* Pods_htnappui.framework in Frameworks */,
 			);
@@ -159,6 +161,7 @@
 			name = htnappui;
 			packageProductDependencies = (
 				A17511D925B2C88A0092AAA1 /* Introspect */,
+				A111AE5C25B4322C00D35555 /* SwiftyJSON */,
 			);
 			productName = htnappui;
 			productReference = A17511A725B2A14A0092AAA1 /* htnappui.app */;
@@ -189,6 +192,7 @@
 			mainGroup = A175119E25B2A14A0092AAA1;
 			packageReferences = (
 				A17511D825B2C88A0092AAA1 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
+				A111AE5B25B4322C00D35555 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 			);
 			productRefGroup = A17511A825B2A14A0092AAA1 /* Products */;
 			projectDirPath = "";
@@ -450,6 +454,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		A111AE5B25B4322C00D35555 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		A17511D825B2C88A0092AAA1 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect.git";
@@ -461,6 +473,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		A111AE5C25B4322C00D35555 /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A111AE5B25B4322C00D35555 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
 		A17511D925B2C88A0092AAA1 /* Introspect */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A17511D825B2C88A0092AAA1 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
