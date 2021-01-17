@@ -61,8 +61,8 @@ struct GameSetup: View {
                                 try? JSONSerialization.data(withJSONObject: requestParams) else { return }
 
                             var request = URLRequest(url: url)
-                            request.httpMethod = "GET"
-//                            request.httpBody = requestData
+                            request.httpMethod = "POST"
+                            request.httpBody = requestData
 
                             let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
                                 guard let data = data else { return }

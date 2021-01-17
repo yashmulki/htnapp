@@ -146,7 +146,7 @@ class GameViewController : UIViewController {
         captureSession.addOutput(videoOutput)
         captureSession.usesApplicationAudioSession = false
 
-//        captureSession.connections.first!.videoOrientation = .portraitUpsideDown
+        captureSession.connections.first!.videoOrientation = .portraitUpsideDown
         captureSession.commitConfiguration()
 
         if vonageInfo == nil {
@@ -158,10 +158,6 @@ class GameViewController : UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        let timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (Timer) in
-//            self.pollServer() // Polls every second, can change as desired
-//        }
 
         switch AVCaptureDevice.authorizationStatus(for: .video) {
         case .authorized:
