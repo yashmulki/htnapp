@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		08CC754C25B3EDBE00A6C210 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 08CC754B25B3EDBE00A6C210 /* SwiftyJSON */; };
 		3CE92C4D331CECDD5445DD43 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE92DBDCDF37EA4186348B8 /* Game.swift */; };
 		A17511AB25B2A14A0092AAA1 /* htnappuiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17511AA25B2A14A0092AAA1 /* htnappuiApp.swift */; };
 		A17511AD25B2A14A0092AAA1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17511AC25B2A14A0092AAA1 /* ContentView.swift */; };
@@ -60,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08CC754C25B3EDBE00A6C210 /* SwiftyJSON in Frameworks */,
 				B89C8F9E25B2E9DF0086304B /* Introspect in Frameworks */,
 				B14E1AA6CB1669F7D02FAA41 /* Pods_htnappui.framework in Frameworks */,
 			);
@@ -156,6 +158,7 @@
 			name = htnappui;
 			packageProductDependencies = (
 				A17511D925B2C88A0092AAA1 /* Introspect */,
+				08CC754B25B3EDBE00A6C210 /* SwiftyJSON */,
 			);
 			productName = htnappui;
 			productReference = A17511A725B2A14A0092AAA1 /* htnappui.app */;
@@ -186,6 +189,7 @@
 			mainGroup = A175119E25B2A14A0092AAA1;
 			packageReferences = (
 				A17511D825B2C88A0092AAA1 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
+				08CC754A25B3EDBE00A6C210 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 			);
 			productRefGroup = A17511A825B2A14A0092AAA1 /* Products */;
 			projectDirPath = "";
@@ -384,7 +388,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"htnappui/Preview Content\"";
-				DEVELOPMENT_TEAM = MX7F8VC2CH;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = htnappui/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -407,7 +411,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"htnappui/Preview Content\"";
-				DEVELOPMENT_TEAM = MX7F8VC2CH;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = htnappui/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -446,6 +450,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		08CC754A25B3EDBE00A6C210 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		A17511D825B2C88A0092AAA1 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect.git";
@@ -457,6 +469,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		08CC754B25B3EDBE00A6C210 /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 08CC754A25B3EDBE00A6C210 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
 		A17511D925B2C88A0092AAA1 /* Introspect */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A17511D825B2C88A0092AAA1 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
