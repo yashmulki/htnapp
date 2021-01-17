@@ -23,26 +23,6 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Odx-z4-Smb" customClass="RoundedCornerView" customModule="htnappui" customModuleProvider="target">
                                         <rect key="frame" x="8" y="712" width="359" height="76"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tXB-rF-em5" customClass="RoundedCornerView" customModule="htnappui" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="5" width="66" height="66"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="34"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </view>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9o5-R9-i37" customClass="RoundedCornerView" customModule="htnappui" customModuleProvider="target">
-                                                <rect key="frame" x="82" y="5" width="66" height="66"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="34"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </view>
                                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Qz3-UI-1vW">
                                                 <rect key="frame" x="156" y="26" width="195" height="4"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -109,6 +89,19 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9o5-R9-i37" customClass="RoundedCornerView" customModule="htnappui" customModuleProvider="target">
+                                        <rect key="frame" x="24" y="639" width="128" height="135"/>
+                                        <color key="backgroundColor" systemColor="systemGray3Color"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="128" id="5vi-E5-L4V"/>
+                                            <constraint firstAttribute="height" constant="135" id="EBh-cf-mAm"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="67"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -116,6 +109,8 @@
                                     <constraint firstItem="CCD-s8-uK6" firstAttribute="leading" secondItem="Mur-iE-N7Z" secondAttribute="leading" constant="8" id="Qgw-ML-FpV"/>
                                     <constraint firstItem="Odx-z4-Smb" firstAttribute="leading" secondItem="Mur-iE-N7Z" secondAttribute="leading" constant="8" id="YwL-dL-7bC"/>
                                     <constraint firstAttribute="bottom" secondItem="Odx-z4-Smb" secondAttribute="bottom" constant="24" id="Z1n-EH-a3G"/>
+                                    <constraint firstItem="9o5-R9-i37" firstAttribute="leading" secondItem="Mur-iE-N7Z" secondAttribute="leading" constant="24" id="aQ1-es-NfL"/>
+                                    <constraint firstAttribute="bottom" secondItem="9o5-R9-i37" secondAttribute="bottom" constant="38" id="gSC-tM-xJl"/>
                                     <constraint firstAttribute="trailing" secondItem="Odx-z4-Smb" secondAttribute="trailing" constant="8" id="v40-AE-7je"/>
                                     <constraint firstItem="CCD-s8-uK6" firstAttribute="top" secondItem="Mur-iE-N7Z" secondAttribute="top" constant="52" id="yXd-mL-DvN"/>
                                 </constraints>
@@ -137,7 +132,6 @@
                         <outlet property="opponentStreamView" destination="9o5-R9-i37" id="i3e-Yz-mgj"/>
                         <outlet property="preview" destination="Mur-iE-N7Z" id="gFG-1i-8zx"/>
                         <outlet property="youProgress" destination="Qz3-UI-1vW" id="8Rj-x8-iF1"/>
-                        <outlet property="yourStreamView" destination="tXB-rF-em5" id="W53-WK-0Ql"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vWS-sU-wcy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -155,6 +149,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray3Color">
+            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -35,7 +35,6 @@ class GameViewController : UIViewController {
     
     @IBOutlet var headerLabel: UILabel!
     
-    @IBOutlet var yourStreamView: RoundedCornerView!
     
     @IBOutlet var opponentStreamView: RoundedCornerView!
     
@@ -428,16 +427,16 @@ extension GameViewController : OTSessionDelegate {
         guard let subscriberView = subscriber.view else {
             return
         }
-
+        /// TAYLOR PLZ LOOK AT THIS
         let screenBounds = UIScreen.main.bounds
         subscriberView.frame = CGRect(
-            x: screenBounds.width - 150 - 20,
-            y: screenBounds.height - 150 - 20,
-            width: 150,
-            height: 150
+            x: 0,
+            y: 0,
+            width: 125,
+            height: 125
         )
 
-        view.addSubview(subscriberView)
+        opponentStreamView.addSubview(subscriberView)
     }
 
     func session(_ session: OTSession, streamDestroyed stream: OTStream) {
