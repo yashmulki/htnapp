@@ -102,22 +102,39 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1mo-ae-caR">
-                                        <rect key="frame" x="24" y="129" width="326" height="53"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="36"/>
-                                        <color key="textColor" systemColor="systemYellowColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UtN-vG-MUB">
+                                        <rect key="frame" x="35" y="134" width="305" height="66"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Stand Up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1mo-ae-caR">
+                                                <rect key="frame" x="-11" y="6" width="326" height="53"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                                <size key="shadowOffset" width="1" height="-1"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="1mo-ae-caR" firstAttribute="centerX" secondItem="UtN-vG-MUB" secondAttribute="centerX" id="DKZ-oC-b1R"/>
+                                            <constraint firstItem="1mo-ae-caR" firstAttribute="centerY" secondItem="UtN-vG-MUB" secondAttribute="centerY" id="jc6-Ot-GhO"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="CCD-s8-uK6" secondAttribute="trailing" constant="8" id="OEX-8W-oZ8"/>
                                     <constraint firstItem="CCD-s8-uK6" firstAttribute="leading" secondItem="Mur-iE-N7Z" secondAttribute="leading" constant="8" id="Qgw-ML-FpV"/>
+                                    <constraint firstItem="UtN-vG-MUB" firstAttribute="top" secondItem="CCD-s8-uK6" secondAttribute="bottom" constant="36" id="Tbl-Zi-1qd"/>
                                     <constraint firstItem="Odx-z4-Smb" firstAttribute="leading" secondItem="Mur-iE-N7Z" secondAttribute="leading" constant="8" id="YwL-dL-7bC"/>
                                     <constraint firstAttribute="bottom" secondItem="Odx-z4-Smb" secondAttribute="bottom" constant="24" id="Z1n-EH-a3G"/>
                                     <constraint firstItem="9o5-R9-i37" firstAttribute="leading" secondItem="Mur-iE-N7Z" secondAttribute="leading" constant="24" id="aQ1-es-NfL"/>
                                     <constraint firstAttribute="bottom" secondItem="9o5-R9-i37" secondAttribute="bottom" constant="38" id="gSC-tM-xJl"/>
+                                    <constraint firstItem="UtN-vG-MUB" firstAttribute="centerX" secondItem="Mur-iE-N7Z" secondAttribute="centerX" id="nEq-s4-x9h"/>
                                     <constraint firstAttribute="trailing" secondItem="Odx-z4-Smb" secondAttribute="trailing" constant="8" id="v40-AE-7je"/>
                                     <constraint firstItem="CCD-s8-uK6" firstAttribute="top" secondItem="Mur-iE-N7Z" secondAttribute="top" constant="52" id="yXd-mL-DvN"/>
                                 </constraints>
@@ -163,9 +180,6 @@
         </systemColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemYellowColor">
-            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

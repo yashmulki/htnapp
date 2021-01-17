@@ -76,21 +76,62 @@ class GameViewController : UIViewController {
     var activitiesCompletedRepetition = 0
     
     var lastCompletionTimeStamp: Date = Date()
+
+    enum ThisState {
+        case findUser
+        case tryExercise
+        case goBack
+    }
+
+    var state = ThisState.findUser
+    var evidence = 0
+
+    let evidenceMinimum = 2
     
     func checkIfExercise(recognizedPoints: [VNRecognizedPointKey:VNRecognizedPoint]) {
         DispatchQueue.main.async { [self] in
-            // Make sure it doesn't keep repeated counting
-            if Date().timeIntervalSince(lastCompletionTimeStamp).isLess(than: 1) {
-                return
-            }
-            
             let move = routine.steps[activitiesIndex].move
-            
-            if move.checkActive(recognizedPoints: recognizedPoints) {
-                lastCompletionTimeStamp = Date()
-                activitiesCompletedRepetition += 1
+
+            let isActive = move.checkActive(recognizedPoints: recognizedPoints)
+
+            switch state {
+            case .findUser:
+                evidence += 1
+
+                if evidence > evidenceMinimum {
+                    evidence = 0
+                    state = .tryExercise
+                    instruction.text = "Go!"
+                }
+
+            case .tryExercise:
+                if isActive {
+                    evidence += 1
+
+                    if evidence == evidenceMinimum {
+                        instruction.text = "Hold!"
+                    }
+
+                    if evidence > move.evidenceMinimum {
+                        evidence = 0
+                        state = .goBack
+                        instruction.text = "Return!"
+                    }
+                }
+
+            case .goBack:
+                if !isActive {
+                    evidence += 1
+
+                    if evidence > move.evidenceMinimum {
+                        activitiesCompletedRepetition += 1
+                        evidence = 0
+                        state = .tryExercise
+                        instruction.text = "Go!"
+                    }
+                }
             }
-            
+
             if activitiesCompletedRepetition >= routine.steps[activitiesIndex].repetitions {
                 // Move to next if available, or just end the game
                 if activitiesIndex == routine.steps.count - 1 {
@@ -102,7 +143,7 @@ class GameViewController : UIViewController {
                     activitiesCompletedRepetition = 0
                 }
             }
-            
+
             headerLabel.text = "\(routine.steps[activitiesIndex].move.name)   \(activitiesCompletedRepetition)/\(routine.steps[activitiesIndex].repetitions)"
             youProgress.progress = (Float(activitiesIndex)/Float(routine.steps.count))
         }
@@ -167,6 +208,8 @@ class GameViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        instruction.text = "Stand Up!"
+
         switch AVCaptureDevice.authorizationStatus(for: .video) {
         case .authorized:
             setupCapture()
@@ -196,7 +239,7 @@ class GameViewController : UIViewController {
         let height = Int(preview?.frame.height ?? 100)
 
         return VNImagePointForNormalizedPoint(
-            CGPoint(x: point.location.x, y: 1 - point.location.y), width, height)
+            CGPoint(x: 1 - point.location.x, y: 1 - point.location.y), width, height)
     }
 
     func bodyPoseHandler(request: VNRequest, error: Error?) {

@@ -17,7 +17,8 @@ enum RoutineType: Int {
 }
 
 protocol Move {
-    var name: String {get}
+    var name: String { get }
+    var evidenceMinimum: Int { get }
     func checkActive(recognizedPoints: [VNRecognizedPointKey: VNRecognizedPoint]) -> Bool // Basically takes in the set of points and confirms that you are in the right mode
 }
 
@@ -47,10 +48,11 @@ func angleBetween(_ point1: CGPoint, _ point2: CGPoint) -> CGFloat {
     return atan2(abs(point1.x-point2.x), abs(point1.y-point2.y))
 }
 
-func flipY(_ p: CGPoint) -> CGPoint { CGPoint(x: p.x, y: 1 - p.y) }
+func flip(_ p: CGPoint) -> CGPoint { CGPoint(x: 1 - p.x, y: 1 - p.y) }
 
 struct Squats: Move {
     var name: String = "Squats"
+    var evidenceMinimum: Int = 10
     
     func checkActive(recognizedPoints: [VNRecognizedPointKey: VNRecognizedPoint]) -> Bool {
         let lh = recognizedPoints[.bodyLandmarkKeyLeftHip]
@@ -59,7 +61,7 @@ struct Squats: Move {
         let rk = recognizedPoints[.bodyLandmarkKeyRightKnee]
 
         if lh != nil && lk != nil && lh!.confidence > 0 && lk!.confidence > 0 {
-            let angle = angleBetween(flipY(lh!.location), flipY(lk!.location))
+            let angle = angleBetween(flip(lh!.location), flip(lk!.location))
             print("Left Squat Angle: \(angle)")
 
             if angle > 1 {
@@ -68,7 +70,7 @@ struct Squats: Move {
         }
 
         if rh != nil && rk != nil && rh!.confidence > 0 && rk!.confidence > 0  {
-            let angle = angleBetween(flipY(rh!.location), flipY(rk!.location))
+            let angle = angleBetween(flip(rh!.location), flip(rk!.location))
             print("Right Squat Angle: \(angle)")
 
             if angle > 1 {
@@ -82,7 +84,8 @@ struct Squats: Move {
 }
 
 struct JumpingJack: Move {
-    var name: String = "Jumping"
+    var name: String = "Jumping Jacks"
+    var evidenceMinimum: Int = 1
     
     func checkActive(recognizedPoints: [VNRecognizedPointKey: VNRecognizedPoint]) -> Bool {
         let lh = recognizedPoints[.bodyLandmarkKeyLeftHip]
@@ -119,10 +122,10 @@ struct JumpingJack: Move {
 
         
         if lw != nil && le != nil && lw!.confidence > 0 && le!.confidence > 0  {
-            let angle = angleBetween(flipY(lw!.location), flipY(le!.location))
+            let angle = angleBetween(flip(lw!.location), flip(le!.location))
             print("Left Jack Hand Angle: \(angle)")
 
-            if angle > CGFloat.pi/3 || flipY(lw!.location).y > flipY(le!.location).y {
+            if angle > CGFloat.pi/3 || flip(lw!.location).y > flip(le!.location).y {
                 return false
             }
         } else {
@@ -130,10 +133,10 @@ struct JumpingJack: Move {
         }
         
         if rw != nil && re != nil && rw!.confidence > 0 && re!.confidence > 0  {
-            let angle = angleBetween(flipY(rw!.location), flipY(re!.location))
+            let angle = angleBetween(flip(rw!.location), flip(re!.location))
             print("Right Jack Hand Angle: \(angle)")
 
-            if angle > CGFloat.pi/3 || flipY(rw!.location).y > flipY(re!.location).y {
+            if angle > CGFloat.pi/3 || flip(rw!.location).y > flip(re!.location).y {
                 return false
             }
         } else {
@@ -157,9 +160,8 @@ var routine1 = Routine(
     length: 15,
     coverImage: Image("exercise1"),
     steps: [
-        RoutineStep(repetitions: 5, move: JumpingJack()),
-        
-        
+        RoutineStep(repetitions: 10, move: JumpingJack()),
+        RoutineStep(repetitions: 10, move: Squats())
     ]
 )
 
