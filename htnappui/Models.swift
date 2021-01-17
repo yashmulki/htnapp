@@ -79,6 +79,70 @@ struct Squats: Move {
 
 }
 
+struct JumpingJack: Move {
+    var name: String = "Jumping"
+    
+    func checkActive(recognizedPoints: [VNRecognizedPointKey: VNRecognizedPoint]) -> Bool {
+        let lh = recognizedPoints[.bodyLandmarkKeyLeftHip]
+        let la = recognizedPoints[.bodyLandmarkKeyLeftAnkle]
+        let rh = recognizedPoints[.bodyLandmarkKeyRightHip]
+        let ra = recognizedPoints[.bodyLandmarkKeyRightAnkle]
+
+        let lw = recognizedPoints[.bodyLandmarkKeyLeftWrist]
+        let le = recognizedPoints[.bodyLandmarkKeyLeftElbow]
+        let rw = recognizedPoints[.bodyLandmarkKeyRightWrist]
+        let re = recognizedPoints[.bodyLandmarkKeyRightElbow]
+                
+//        if lh != nil && la != nil && lh!.confidence > 0 && la!.confidence > 0 {
+//            let angle = angleBetween(lh!.location, la!.location)
+//            print("Left Jack Angle: \(angle)")
+//
+//            if angle > 1 {
+//                return false
+//            }
+//        } else {
+//            return false
+//        }
+//
+//        if rh != nil && ra != nil && rh!.confidence > 0 && ra!.confidence > 0  {
+//            let angle = angleBetween(rh!.location, ra!.location)
+//            print("Right Jack Angle: \(angle)")
+//
+//            if angle > 1 {
+//                return false
+//            }
+//        } else {
+//            return false
+//        }
+
+        
+        if lw != nil && le != nil && lw!.confidence > 0 && le!.confidence > 0  {
+            let angle = angleBetween(lw!.location, le!.location)
+            print("Left Jack Hand Angle: \(angle)")
+
+            if angle > CGFloat.pi/3 || lw!.location.y < le!.location.y {
+                return false
+            }
+        } else {
+            return false
+        }
+        
+        if rw != nil && re != nil && rw!.confidence > 0 && re!.confidence > 0  {
+            let angle = angleBetween(rw!.location, re!.location)
+            print("Right Jack Hand Angle: \(angle)")
+
+            if angle > CGFloat.pi/3 || rw!.location.y < re!.location.y {
+                return false
+            }
+        } else {
+            return false
+        }
+
+        return true
+    }
+
+}
+
 struct Person {
     var name: String
 }
@@ -91,7 +155,9 @@ var routine1 = Routine(
     length: 15,
     coverImage: Image("exercise1"),
     steps: [
-        RoutineStep(repetitions: 5, move: Squats())
+        RoutineStep(repetitions: 5, move: JumpingJack()),
+        RoutineStep(repetitions: 5, move: Squats()),
+        
     ]
 )
 

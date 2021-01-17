@@ -47,8 +47,12 @@ class GameViewController : UIViewController {
     
     var popCallBack: () -> Void = {}
     
-    var leftHandParticles: CALayer!
-    var rigthHandParticles: CALayer!
+    var leftHandEmitter: CAEmitterLayer!
+    var rightHandEmitter: CAEmitterLayer!
+    
+    
+    var leftHandNode = CGPoint()
+    var rightHandNode = CGPoint()
     
     var captureSession: AVCaptureSession!
     var dispatchQueue: DispatchQueue?
@@ -74,7 +78,7 @@ class GameViewController : UIViewController {
     func checkIfExercise(recognizedPoints: [VNRecognizedPointKey:VNRecognizedPoint]) {
         DispatchQueue.main.async { [self] in
             // Make sure it doesn't keep repeated counting
-            if Date().timeIntervalSince(lastCompletionTimeStamp).isLess(than: 0.5) {
+            if Date().timeIntervalSince(lastCompletionTimeStamp).isLess(than: 1) {
                 return
             }
             
@@ -96,7 +100,7 @@ class GameViewController : UIViewController {
                 }
             }
             
-            headerLabel.text = "Activity \(activitiesIndex + 1)/\(routine.steps.count)    \(activitiesCompletedRepetition)/\(routine.steps[activitiesIndex].repetitions)"
+            headerLabel.text = "\(routine.steps[activitiesIndex].move.name)   \(activitiesCompletedRepetition)/\(routine.steps[activitiesIndex].repetitions)"
             youProgress.progress = (Float(activitiesIndex)/Float(routine.steps.count))
         }
     }
@@ -151,6 +155,7 @@ class GameViewController : UIViewController {
 
         if vonageInfo == nil {
             captureSession.startRunning()
+            makeHandParticles()
         }
 
         preview?.videoPreviewLayer.session = captureSession
@@ -179,6 +184,9 @@ class GameViewController : UIViewController {
 
         guard let vonageInfo = vonageInfo else { return }
         connectToSession(sessionId: vonageInfo.sessionId, token: vonageInfo.token)
+        
+        
+        
     }
 
     func bodyPoseHandler(request: VNRequest, error: Error?) {
@@ -222,7 +230,14 @@ class GameViewController : UIViewController {
                     Int(preview?.frame.width ?? 100), Int(preview?.frame.height ?? 100))
             }
 
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [self] in
+                
+                self.rightHandNode =  VNImagePointForNormalizedPoint(recognizedPoints[.bodyLandmarkKeyRightWrist]?.location ?? CGPoint(), Int(preview?.frame.width ?? 100), Int(preview?.frame.height ?? 100))
+
+                self.leftHandNode = VNImagePointForNormalizedPoint(recognizedPoints[.bodyLandmarkKeyLeftWrist]?.location ?? CGPoint(), Int(preview?.frame.width ?? 100), Int(preview?.frame.height ?? 100))
+
+                self.moveHandParticles()
+                
                 self.drawPoints(imagePoints: imagePoints)
                 self.drawLines(recognizedPoints: recognizedPoints)
             }
@@ -276,15 +291,39 @@ class GameViewController : UIViewController {
         dots.append(line)
     }
 
+    func moveHandParticles() {
+        leftHandEmitter?.emitterPosition = leftHandNode
+        rightHandEmitter?.emitterPosition = rightHandNode
+    }
+    
     // We store these and make it follow hands -> TODO
     func makeHandParticles() {
-        let particleEmitter = CAEmitterLayer()
-        particleEmitter.emitterPosition = CGPoint(x: view.center.x, y: -96)
-        particleEmitter.emitterShape = .line
-        particleEmitter.emitterSize = CGSize(width: view.frame.size.width, height: 1)
-        let yellow = makeEmitterCell(color: UIColor.yellow)
-        particleEmitter.emitterCells = [yellow]
-        view.layer.addSublayer(particleEmitter)
+        
+        let yellow = makeEmitterCell(color: .yellow)
+        
+        leftHandEmitter = CAEmitterLayer()
+        leftHandEmitter.emitterPosition = leftHandNode
+        leftHandEmitter.emitterShape = .circle
+        leftHandEmitter.emitterSize = CGSize(width: 10, height: 10)
+        leftHandEmitter.emitterCells = [yellow]
+        view.layer.addSublayer(leftHandEmitter)
+        
+        rightHandEmitter = CAEmitterLayer()
+        rightHandEmitter.emitterPosition = rightHandNode
+        rightHandEmitter.emitterShape = .circle
+        rightHandEmitter.emitterSize = CGSize(width: 10, height: 10)
+        rightHandEmitter.emitterCells = [yellow]
+        view.layer.addSublayer(rightHandEmitter)
+        
+//        let particleEmitter = CAEmitterLayer()
+//        particleEmitter.emitterPosition = CGPoint(x: view.center.x, y: -96)
+//        particleEmitter.emitterShape = .line
+//        particleEmitter.emitterSize = CGSize(width: view.frame.size.width, height: 1)
+//        let yellow = makeEmitterCell(color: UIColor.yellow)
+//        particleEmitter.emitterCells = [yellow]
+        
+        
+//        view.layer.addSublayer(particleEmitter)
     }
     
     // Obviously need to tune these
@@ -300,13 +339,13 @@ class GameViewController : UIViewController {
 
     func makeEmitterCell(color: UIColor) -> CAEmitterCell {
         let cell = CAEmitterCell()
-        cell.birthRate = 3
+        cell.birthRate = 20
         cell.lifetime = 7.0
         cell.lifetimeRange = 0
         cell.color = color.cgColor
         cell.velocity = 200
         cell.velocityRange = 50
-        cell.emissionLongitude = CGFloat.pi
+        cell.emissionLongitude = CGFloat.pi / 2
         cell.emissionRange = CGFloat.pi / 4
         cell.spin = 2
         cell.spinRange = 3
