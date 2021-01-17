@@ -48,7 +48,6 @@ func angleBetween(point1: CGPoint, point2: CGPoint) -> CGFloat {
 }
 
 struct JumpingJack: Move {
-    
     var name: String = "Jumping Jack"
     
     func checkActive(recognizedPoints: [VNRecognizedPointKey: VNRecognizedPoint]) -> Bool {
@@ -62,6 +61,16 @@ struct Person {
     var name: String
 }
 
-var routine1 = Routine(name: "Daily Challenge", type: .exercise, difficulty: .medium, associatedSong: Song(name: "Hawaii", artist: "The Beach Boys", resourcePath: "hawaii"), length: 15, coverImage: Image("exercise1"), steps: [])
+var routine1 = Routine(
+    name: "Daily Challenge",
+    type: .exercise,
+    difficulty: .medium,
+    associatedSong: Song(name: "Hawaii", artist: "The Beach Boys", resourcePath: "hawaii"),
+    length: 15,
+    coverImage: Image("exercise1"),
+    steps: [
+        RoutineStep(repetitions: 5, move: JumpingJack())
+    ]
+)
 
 var routines = [routine1, routine1,routine1,routine1,routine1,routine1]

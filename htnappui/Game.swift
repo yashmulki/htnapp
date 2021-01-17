@@ -65,7 +65,7 @@ class GameViewController : UIViewController {
 
     // tracking exercise
     
-    var routine: Routine!
+    var routine: Routine! = routine1
     var activitiesIndex = 0
     var activitiesCompletedRepetition = 0
     
@@ -73,9 +73,8 @@ class GameViewController : UIViewController {
     
     func checkIfExercise(recognizedPoints: [VNRecognizedPointKey:VNRecognizedPoint]) {
         DispatchQueue.main.async { [self] in
-            
             // Make sure it doesn't keep repeated counting
-            if Date().timeIntervalSince(self.lastCompletionTimeStamp).isLess(than: 0.5) {
+            if Date().timeIntervalSince(lastCompletionTimeStamp).isLess(than: 0.5) {
                 return
             }
             
@@ -88,7 +87,6 @@ class GameViewController : UIViewController {
             
             if activitiesCompletedRepetition >= routine.steps[activitiesIndex].repetitions {
                 // Move to next if available, or just end the game
-                
                 if activitiesIndex == routine.steps.count - 1 {
                     // Go to the game end screen
                 } else {
@@ -96,7 +94,6 @@ class GameViewController : UIViewController {
                     activitiesIndex += 1
                     activitiesCompletedRepetition = 0
                 }
-                
             }
             
             headerLabel.text = "Activity \(activitiesIndex + 1)/\(routine.steps.count)    \(activitiesCompletedRepetition)/\(routine.steps[activitiesIndex].repetitions)"
@@ -216,7 +213,6 @@ class GameViewController : UIViewController {
                 .bodyLandmarkKeyRightAnkle,
             ]
 
-            
             checkIfExercise(recognizedPoints: recognizedPoints)
             
             // Retrieve the CGPoints containing the normalized X and Y coordinates.
@@ -231,68 +227,44 @@ class GameViewController : UIViewController {
             }
 
             DispatchQueue.main.async {
-                for dot in self.dots {
-                    dot.removeFromSuperlayer()
-                }
-                
-                for point in imagePoints {
-                    let node = CAShapeLayer()
-                    node.fillColor = UIColor.white.cgColor
-                    node.path = UIBezierPath(ovalIn: CGRect(x: point.x  , y: point.y, width: 20, height: 20)).cgPath;
-                    self.dots.append(node)
-                    self.preview.layer.addSublayer(node)
-                    
-                    if let rw = recognizedPoints[.bodyLandmarkKeyRightWrist], rw.confidence > 0, let re = recognizedPoints[.bodyLandmarkKeyRightElbow], rw.confidence > 0 {
-
-                        let rightWrist = VNImagePointForNormalizedPoint(rw.location,
-                                                                        Int(self.preview?.frame.width ?? 100), Int(self.preview?.frame.height ?? 100))
-                        let rightElbow = VNImagePointForNormalizedPoint(re.location,
-                                                                        Int(self.preview?.frame.width ?? 100), Int(self.preview?.frame.height ?? 100))
-                        self.drawLine(onLayer: self.preview.layer, fromPoint: rightWrist, toPoint: rightElbow)
-                    }
-                    
-                    if let rs = recognizedPoints[.bodyLandmarkKeyRightShoulder], rs.confidence > 0, let re = recognizedPoints[.bodyLandmarkKeyRightElbow], re.confidence > 0 {
-                        
-                        let rightShoulder = VNImagePointForNormalizedPoint(rs.location,
-                                                                        Int(self.preview?.frame.width ?? 100), Int(self.preview?.frame.height ?? 100))
-                        let rightElbow = VNImagePointForNormalizedPoint(re.location,
-                                                                        Int(self.preview?.frame.width ?? 100), Int(self.preview?.frame.height ?? 100))
-                        self.drawLine(onLayer: self.preview.layer, fromPoint: rightShoulder, toPoint: rightElbow)
-                    }
-                    
-                    if let rs = recognizedPoints[.bodyLandmarkKeyRightShoulder], rs.confidence > 0, let ls = recognizedPoints[.bodyLandmarkKeyLeftShoulder], ls.confidence > 0 {
-                        
-                        let rightShoulder = VNImagePointForNormalizedPoint(rs.location,
-                                                                        Int(self.preview?.frame.width ?? 100), Int(self.preview?.frame.height ?? 100))
-                        let leftShoulder = VNImagePointForNormalizedPoint(ls.location,
-                                                                        Int(self.preview?.frame.width ?? 100), Int(self.preview?.frame.height ?? 100))
-                        self.drawLine(onLayer: self.preview.layer, fromPoint: rightShoulder, toPoint: leftShoulder)
-                    }
-                    
-                    if let lw = recognizedPoints[.bodyLandmarkKeyLeftWrist], lw.confidence > 0, let le = recognizedPoints[.bodyLandmarkKeyLeftElbow], le.confidence > 0 {
-                        
-                        let leftWrist = VNImagePointForNormalizedPoint(lw.location,
-                                                                        Int(self.preview?.frame.width ?? 100), Int(self.preview?.frame.height ?? 100))
-                        let leftElbow = VNImagePointForNormalizedPoint(le.location,
-                                                                        Int(self.preview?.frame.width ?? 100), Int(self.preview?.frame.height ?? 100))
-                        self.drawLine(onLayer: self.preview.layer, fromPoint: leftWrist, toPoint: leftElbow)
-                    }
-                    
-                    if let ls = recognizedPoints[.bodyLandmarkKeyLeftShoulder], ls.confidence > 0, let le = recognizedPoints[.bodyLandmarkKeyLeftElbow], le.confidence > 0 {
-                        
-                        let rightShoulder = VNImagePointForNormalizedPoint(ls.location,
-                                                                        Int(self.preview?.frame.width ?? 100), Int(self.preview?.frame.height ?? 100))
-                        let rightElbow = VNImagePointForNormalizedPoint(le.location,
-                                                                        Int(self.preview?.frame.width ?? 100), Int(self.preview?.frame.height ?? 100))
-                        self.drawLine(onLayer: self.preview.layer, fromPoint: rightShoulder, toPoint: rightElbow)
-                    }
-                }
+                self.drawPoints(imagePoints: imagePoints)
+                self.drawLines(recognizedPoints: recognizedPoints)
             }
-
-            print(imagePoints)
         }
     }
-    
+
+    func drawLine(_ a: VNRecognizedPoint?, _ b: VNRecognizedPoint?) {
+        let width = Int(preview?.frame.width ?? 100)
+        let height = Int(preview?.frame.height ?? 100)
+
+        if let a = a, a.confidence > 0, let b = b, b.confidence > 0 {
+            let aPoint = VNImagePointForNormalizedPoint(a.location, width, height)
+            let bPoint = VNImagePointForNormalizedPoint(b.location, width, height)
+            self.drawLine(onLayer: preview.layer, fromPoint: aPoint, toPoint: bPoint)
+        }
+    }
+
+    func drawLines(recognizedPoints: [VNRecognizedPointKey: VNRecognizedPoint]) {
+        drawLine(recognizedPoints[.bodyLandmarkKeyRightWrist], recognizedPoints[.bodyLandmarkKeyRightElbow])
+        drawLine(recognizedPoints[.bodyLandmarkKeyRightShoulder], recognizedPoints[.bodyLandmarkKeyRightElbow])
+        drawLine(recognizedPoints[.bodyLandmarkKeyRightShoulder], recognizedPoints[.bodyLandmarkKeyLeftShoulder])
+        drawLine(recognizedPoints[.bodyLandmarkKeyLeftWrist], recognizedPoints[.bodyLandmarkKeyLeftElbow])
+        drawLine(recognizedPoints[.bodyLandmarkKeyLeftShoulder], recognizedPoints[.bodyLandmarkKeyLeftElbow])
+    }
+
+    func drawPoints(imagePoints: [CGPoint]) {
+        for dot in dots {
+            dot.removeFromSuperlayer()
+        }
+
+        for point in imagePoints {
+            let node = CAShapeLayer()
+            node.fillColor = UIColor.white.cgColor
+            node.path = UIBezierPath(ovalIn: CGRect(x: point.x, y: point.y, width: 20, height: 20)).cgPath
+            dots.append(node)
+            preview.layer.addSublayer(node)
+        }
+    }
     
     func drawLine(onLayer layer: CALayer, fromPoint start: CGPoint, toPoint end: CGPoint)  {
         let line = CAShapeLayer()
@@ -305,7 +277,7 @@ class GameViewController : UIViewController {
         line.opacity = 1.0
         line.strokeColor = UIColor.white.cgColor
         layer.addSublayer(line)
-        self.dots.append(line)
+        dots.append(line)
     }
 
     // We store these and make it follow hands -> TODO
@@ -319,7 +291,6 @@ class GameViewController : UIViewController {
         view.layer.addSublayer(particleEmitter)
     }
     
-    
     // Obviously need to tune these
     func finishedActivityParticles() {
         let particleEmitter = CAEmitterLayer()
@@ -330,17 +301,6 @@ class GameViewController : UIViewController {
         particleEmitter.emitterCells = [yellow]
         view.layer.addSublayer(particleEmitter)
     }
-    
-    func repetitionactivtyParticles() {
-        let particleEmitter = CAEmitterLayer()
-        particleEmitter.emitterPosition = CGPoint(x: view.center.x, y: -96)
-        particleEmitter.emitterShape = .line
-        particleEmitter.emitterSize = CGSize(width: view.frame.size.width, height: 1)
-        let yellow = makeEmitterCell(color: UIColor.yellow)
-        particleEmitter.emitterCells = [yellow]
-        view.layer.addSublayer(particleEmitter)
-    }
-    
 
     func makeEmitterCell(color: UIColor) -> CAEmitterCell {
         let cell = CAEmitterCell()
